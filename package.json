@@ -1,3 +1,24 @@
-// This file is required by the index.html file and will
-// be executed in the renderer process for that window.
-// All of the Node.js APIs are available in this process.
+{
+  "name": "master-electron",
+  "version": "1.0.0",
+  "description": "Master Electron Course Code",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "watch": "nodemon --exec electron .",
+    "reset": "git reset --hard"
+  },
+  "repository": "https://github.com/rFarinha/Acronymu",
+  "keywords": [
+    "Electron",
+    "Master Electron",
+    "demo"
+  ],
+  "author": "GitHub, Stackacademytv",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^9.0.0",
+    "nodemon": "^2.0.0"
+  },
+  "dependencies": {}
+}

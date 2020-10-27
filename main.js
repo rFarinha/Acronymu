@@ -11,6 +11,7 @@ let lists = []
 
 let tray = null
 app.whenReady().then(() => {
+  CreateHiddenWindow()
   tray = new Tray('resources/icon.png')
   let contextMenu = Menu.buildFromTemplate(template)
   tray.setToolTip('Find your acronym.')
@@ -31,7 +32,7 @@ const template = [
   },
   { type: 'separator' },
   { label: 'Options',
-  click() { CreateOptionsWindow() }},
+  click() { CreateOptionsWindow('options') }},
   {label: 'Learn More',
   click: async () => {
     const { shell } = require('electron')
@@ -53,40 +54,35 @@ function readListFolder(menu){
 }
 
 
-function CreateOptionsWindow(){
+function CreateOptionsWindow(page){
   optionsWindow = new BrowserWindow({
-    height: 185,
+    height: 300, width: 270,
     resizable: false,
-    width: 270,
-    title: '',
+    title: page,
     minimizable: false,
     fullscreenable: false,
+    frame: false,
     webPreferences: { nodeIntegration: true }
   })
 
   // Load index.html into the new BrowserWindow
-  optionsWindow.loadFile('index.html')
+  optionsWindow.loadFile(listsPath + page + '.html')
 
   // Open DevTools - Remove for PRODUCTION!
   //optionsWindow.webContents.openDevTools();
 
   // Listen for window being closed
-  //optionsWindow.on('closed',  () => {
-  //  optionsWindow = null
-  //})
+  optionsWindow.on('closed',  () => {
+    optionsWindow = null
+  })
 }
 
-/*const TrayWindow = require("electron-tray-window");
-
-const { ipcMain, Tray, app, BrowserWindow } = require("electron");
-const path = require("path");
-
-app.on("ready", () => {
-TrayWindow.setOptions({
-  trayIconPath: path.join("resources/icon.png"),
-  windowUrl: `file://${path.join(__dirname, "index.html")}`,
-  width: 290,
-  height: 320
-});
-});
-*/
+// Necessary tp have notifications
+function CreateHiddenWindow(){
+  optionsWindow = new BrowserWindow({
+    height: 1, width: 1,
+    show: false,
+    webPreferences: { nodeIntegration: true }
+  })
+  optionsWindow.loadFile(listsPath + 'index.html')
+}

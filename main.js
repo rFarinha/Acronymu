@@ -1,6 +1,11 @@
-const { app, Menu, Tray } = require('electron')
+const { app, Menu, MenuItem, Tray } = require('electron')
+const fs = require('fs'); // access files
 
 const isMac = process.platform === 'darwin'
+let listsPath = './resources/'
+const EXTENSION = '.txt'
+let lists = []
+
 
 // TODO: Read txt files and add to List Menu
 
@@ -10,6 +15,7 @@ app.whenReady().then(() => {
   let contextMenu = Menu.buildFromTemplate(template)
   tray.setToolTip('Find your acronym.')
   tray.setContextMenu(contextMenu)
+  readListFolder(contextMenu)
 })
 
 const template = [
@@ -17,7 +23,7 @@ const template = [
   { type: 'separator' },
   { label: 'Add to List' },
   {
-    label: 'Lists',
+    label: 'Lists', id: 'menu',
     submenu: [
       { label: 'Create new List'},
       { type: 'separator' },
@@ -34,8 +40,16 @@ const template = [
   isMac ? { role: 'close' } : { role: 'quit' }
 ]
 
-
-
+function readListFolder(menu){
+  fs.readdir(listsPath, (err, files) => {
+    let menuList = menu.getMenuItemById('menu')
+    files.forEach(file => {
+      if(file.slice(-4, file.length) === EXTENSION){
+        menuList.submenu.append(new MenuItem({label:file.slice(0,-4), type: 'radio'}))
+      }
+    });
+  lists = files});
+}
 
 
 /*const TrayWindow = require("electron-tray-window");

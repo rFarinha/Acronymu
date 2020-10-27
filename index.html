@@ -1,17 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'">
-    <title>Hello World!</title>
-    <style>
-      html { font-family: sans-serif; background: #2B2E3B; color: #9FEAF9; }
-    </style>
+    <title>Electron-Tray-Window Example</title>
   </head>
-  <body>
+  <style>
+    body {
+      overflow: hidden;
+      width: 341px;
+    }
+    #container {
+      width: 210px;
+      height: 250px;
+      background-color: rgba(255, 255, 255, 0);
+    }
+    #left-wrapper {
+      width: 140px;
+      margin-left: 10px;
+      margin-top: 20px;
+      float: left;
+    }
+    .small-box {
+      border-radius: 7px;
+      width: 40px;
+      height: 40px;
+      background-color: #404040;
+      float: left;
+      margin-left: 20px;
+      margin-top: 20px;
+    }
+    #big-box {
+      border-radius: 7px;
+      background-color: #434344;
+      float: left;
+      width: 100px;
+      height: 100px;
+      margin-right: 5px;
+      margin-top: 10px;
+      color: #cd970c;
+      font-weight: bolder;
+      font-size: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Segoe UI";
+    }
+    #wide-box {
+      border-radius: 7px;
+      background-color: #434344;
+      float: left;
+      width: 100px;
+      height: 40px;
+      margin-left: 30px;
+      margin-top: 20px;
+      color: #cd970c;
+      font-weight: bolder;
+      font-size: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Segoe UI";
+    }
+    #center-wrapper {
+      float: left;
+      width: 120px;
+    }
+    #huge-box {
+      border-radius: 20px;
+      background-color: #404040;
+      float: left;
+      width: 180px;
+      height: 50px;
+      margin-left: 15px;
+      margin-top: 0px;
+      color: #FFFFFF;
+      font-weight: bolder;
+      font-size: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Segoe UI";
+    }
+    .interactive {
+      cursor: pointer !important;
+    }
+    .interactive:hover {
+      background-color: #F86754 !important;
+      color: #000000 !important;
+    }
+  </style>
 
-    <h1>Hello Electron!</h1>
-    <p>Build cross-platform desktop apps with JavaScript, HTML, and CSS</p>
+  <body>
+    <div id="container">
+      <button id="huge-box" class="interactive" id="cancelinstall" onclick="quitApplication()">Add to List</button>
+      <button id="huge-box" class="interactive" id="cancelinstall" onclick="quitApplication()">Lists</button>
+      <button id="huge-box" class="interactive" id="cancelinstall" onclick="quitApplication()">Options</button>
+      <button id="huge-box" class="interactive" id="cancelinstall" onclick="quitApplication()">Exit</button>
+    </div>
 
     <script>
       // You can also require other files to run in this process

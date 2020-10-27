@@ -1,39 +1,54 @@
-// Modules
-const {app, BrowserWindow} = require('electron')
+const { app, Menu, Tray } = require('electron')
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
+const isMac = process.platform === 'darwin'
 
-// Create a new BrowserWindow when `app` is ready
-function createWindow () {
+// TODO: Read txt files and add to List Menu
 
-  mainWindow = new BrowserWindow({
-    width: 1000, height: 800,
-    webPreferences: { nodeIntegration: true }
-  })
-
-  // Load index.html into the new BrowserWindow
-  mainWindow.loadFile('index.html')
-
-  // Open DevTools - Remove for PRODUCTION!
-  mainWindow.webContents.openDevTools();
-
-  // Listen for window being closed
-  mainWindow.on('closed',  () => {
-    mainWindow = null
-  })
-}
-
-// Electron `app` is ready
-app.on('ready', createWindow)
-
-// Quit when all windows are closed - (Not macOS - Darwin)
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit()
+let tray = null
+app.whenReady().then(() => {
+  tray = new Tray('resources/icon.png')
+  let contextMenu = Menu.buildFromTemplate(template)
+  tray.setToolTip('Find your acronym.')
+  tray.setContextMenu(contextMenu)
 })
 
-// When app icon is clicked and app is running, (macOS) recreate the BrowserWindow
-app.on('activate', () => {
-  if (mainWindow === null) createWindow()
-})
+const template = [
+  { label: app.name, enabled: false },
+  { type: 'separator' },
+  { label: 'Add to List' },
+  {
+    label: 'Lists',
+    submenu: [
+      { label: 'Create new List'},
+      { type: 'separator' },
+    ]
+  },
+  { type: 'separator' },
+  { label: 'Options', },
+  {label: 'Learn More',
+  click: async () => {
+    const { shell } = require('electron')
+    await shell.openExternal('https://electronjs.org')
+  }},
+  { type: 'separator' },
+  isMac ? { role: 'close' } : { role: 'quit' }
+]
+
+
+
+
+
+/*const TrayWindow = require("electron-tray-window");
+
+const { ipcMain, Tray, app, BrowserWindow } = require("electron");
+const path = require("path");
+
+app.on("ready", () => {
+TrayWindow.setOptions({
+  trayIconPath: path.join("resources/icon.png"),
+  windowUrl: `file://${path.join(__dirname, "index.html")}`,
+  width: 290,
+  height: 320
+});
+});
+*/

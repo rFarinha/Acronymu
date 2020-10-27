@@ -1,7 +1,7 @@
 {
-  "name": "master-electron",
+  "name": "Acronymu",
   "version": "1.0.0",
-  "description": "Master Electron Course Code",
+  "description": "Find the acronym you are looking for",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -20,5 +20,7 @@
     "electron": "^9.0.0",
     "nodemon": "^2.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "electron-tray-window": "^1.2.5"
+  }
 }

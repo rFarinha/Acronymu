@@ -1,4 +1,4 @@
-const { app, Menu, MenuItem, Tray } = require('electron')
+const { app, Menu, MenuItem, BrowserWindow, Tray } = require('electron')
 const fs = require('fs'); // access files
 
 const isMac = process.platform === 'darwin'
@@ -30,7 +30,8 @@ const template = [
     ]
   },
   { type: 'separator' },
-  { label: 'Options', },
+  { label: 'Options',
+  click() { CreateOptionsWindow() }},
   {label: 'Learn More',
   click: async () => {
     const { shell } = require('electron')
@@ -51,6 +52,29 @@ function readListFolder(menu){
   lists = files});
 }
 
+
+function CreateOptionsWindow(){
+  optionsWindow = new BrowserWindow({
+    height: 185,
+    resizable: false,
+    width: 270,
+    title: '',
+    minimizable: false,
+    fullscreenable: false,
+    webPreferences: { nodeIntegration: true }
+  })
+
+  // Load index.html into the new BrowserWindow
+  optionsWindow.loadFile('index.html')
+
+  // Open DevTools - Remove for PRODUCTION!
+  //optionsWindow.webContents.openDevTools();
+
+  // Listen for window being closed
+  //optionsWindow.on('closed',  () => {
+  //  optionsWindow = null
+  //})
+}
 
 /*const TrayWindow = require("electron-tray-window");
 

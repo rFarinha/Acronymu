@@ -1,24 +1,79 @@
-html * {
-  font-family: sans-serif;
-  background: #2B2E3B;
-  color: #FFFFFF;
+@font-face { font-family: "Lato-Light";
+    src: url("./fonts/Lato-Light.ttf");
 }
 
-p {
-  color: #7D7D7D
-  font-size: 30px;
+@font-face { font-family: "Lato-Semibold";
+    src: url("./fonts/Lato-Semibold.ttf");
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto;
-  gap: 0px 0px;
-  grid-template-areas:
-    ". ."
+@font-face { font-family: "Lato-Regular";
+    src: url("./fonts/Lato-Regular.ttf");
 }
 
-/* The switch - the box around the slider */
+html, body {
+  font-family: "Lato-Regular";
+  background: #FFFFFF;
+  color: #404040;
+  height: 100%;
+}
+
+h2 {
+  color: #404040;
+  font-size: 24px;
+}
+
+/* Style the sidebar - fixed full height */
+.sidebar {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #FFFFFF;
+  overflow-x: hidden;
+  margin-left: 10px;
+}
+
+.sidebar p {
+  padding: 6px 8px 6px 16px;
+  font-size: 24px;
+  font-family: "Lato-Semibold";
+  display: block;
+}
+
+/* Style sidebar links */
+.sidebar a {
+  padding: 6px 8px 6px 16px;
+  font-size: 16px;
+  text-decoration: none;
+  color: #404040;
+  font-family: "Lato-Regular";
+  display: block;
+}
+
+/* Style links on mouse-over */
+.sidebar a:hover {
+  background-color: #E8E8E8;
+}
+
+.sidebar a.active {
+  background-color: #DBDBDB;
+}
+
+/* Style the main content */
+main {
+  margin-left: 170px; /* Same as the width of the sidenav */
+  padding: 0px 10px;
+}
+
+/* Add media queries for small screens (when the height of the screen is less than 450px, add a smaller padding and font-size)*/
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+/* The switch - the box around the slider*/
 .switch {
   position: relative;
   display: inline-block;
@@ -79,4 +134,8 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+#home {
+  display: none;
 }

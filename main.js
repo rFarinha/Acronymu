@@ -32,7 +32,7 @@ const template = [
   },
   { type: 'separator' },
   { label: 'Options',
-  click() { CreateOptionsWindow('options') }},
+  click() { CreateWindow('options') }},
   {label: 'Learn More',
   click: async () => {
     const { shell } = require('electron')
@@ -54,9 +54,9 @@ function readListFolder(menu){
 }
 
 
-function CreateOptionsWindow(page){
-  optionsWindow = new BrowserWindow({
-    height: 300, width: 270,
+function CreateWindow(page){
+    browserWindow = new BrowserWindow({
+    height: 600, width: 500,
     resizable: false,
     title: page,
     minimizable: false,
@@ -66,14 +66,14 @@ function CreateOptionsWindow(page){
   })
 
   // Load index.html into the new BrowserWindow
-  optionsWindow.loadFile(listsPath + page + '.html')
+  browserWindow.loadFile(listsPath + page + '.html')
 
   // Open DevTools - Remove for PRODUCTION!
-  //optionsWindow.webContents.openDevTools();
+  browserWindow.webContents.openDevTools();
 
   // Listen for window being closed
-  optionsWindow.on('closed',  () => {
-    optionsWindow = null
+  browserWindow.on('closed',  () => {
+    browserWindow = null
   })
 }
 

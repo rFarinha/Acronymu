@@ -7,7 +7,7 @@ const EXTENSION = '.txt'
 let lists = []
 
 
-// TODO: Read txt files and add to List Menu
+// TODO: When pressing tray button opens specific tab and activates tab
 
 let tray = null
 app.whenReady().then(() => {

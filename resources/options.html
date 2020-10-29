@@ -12,18 +12,16 @@
   <!-- The sidebar -->
   <div class="sidebar" style="-webkit-app-region:no-drag;">
     <p>Acronymu</p>
-    <a href="#home"><i class="fa fa-fw fa-plus-square"></i> Add to List</a>
-    <a href="#Lists"><i class="fa fa-fw fa-list"></i> Lists</a>
-    <a href="#Settings" id="settingsButton"><i class="fa fa-fw fa-cog"></i> Settings</a>
-    <a href="#LearnMore"><i class="fa fa-fw fa-envelope"></i> Learn More</a>
+    <a class="btn active" href="#AddToList" id="AddToListBtn" onclick="openTab('AddToList')" ><i class="fa fa-fw fa-plus-square"></i> Add to List</a>
+    <a class="btn" href="#Lists" id="ListsBtn" onclick="openTab('Lists')"><i class="fa fa-fw fa-list"></i> Lists</a>
+    <a class="btn" href="#Settings" id="SettingsBtn" onclick="openTab('Settings')"><i class="fa fa-fw fa-cog"></i> Settings</a>
+    <a class="btn" href="#LearnMore" id="LearnMoreBtn" onclick="openTab('LearnMore')" ><i class="fa fa-fw fa-envelope"></i> Learn More</a>
   </div>
 
   <main>
-    <div class="tab" id="home">
+    <div class="tab" id="AddToList">
       <h2> Add to List </h2>
     </div>
-    <br>
-    <br>
     <div class="tab" id="Settings">
       <h2> Settings </h2>
       <p> Sound </p>
@@ -36,11 +34,15 @@
       <p>Notification Time</p>
       <input type="number" value="10">
     </div>
+    <div class="tab" id="Lists">
+      <h2> Lists</h2>
+    </div>
+
+    <div class="tab" id="LearnMore">
+      <h2> Learn More </h2>
+    </div>
   </main>
 
-  <script>
-    // You can also require other files to run in this process
-    require('./settings.js')
-  </script>
+  <script src="settings.js"></script>
 </body>
 </html>

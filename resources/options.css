@@ -19,7 +19,8 @@ html, body {
 
 h2 {
   color: #404040;
-  font-size: 24px;
+  font-size: 20px;
+  padding-top: 90px;
 }
 
 /* Style the sidebar - fixed full height */
@@ -136,6 +137,18 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-#home {
+#AddToList {
+  display: none;
+}
+
+#Lists {
+  display: none;
+}
+
+#Settings {
+  display: none;
+}
+
+#LearnMore {
   display: none;
 }

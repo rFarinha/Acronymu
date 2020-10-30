@@ -1,3 +1,4 @@
+// Change TAB
 function openTab(Tab) {
 
   let btns = document.getElementsByClassName("btn");
@@ -10,13 +11,19 @@ function openTab(Tab) {
   }
   var i;
   var x = document.getElementsByClassName("tab");
-  console.log(x)
   for (i = 0; i < x.length; i++) {
     x[i].style.display = "none";
   }
+  
   document.getElementById(Tab).style.display = "block";
 }
 
 //document.querySelector('#settingsButton').addEventListener('click', () => {
 //  openTab()
 //})
+
+
+require('electron').ipcRenderer.on('StartingWindow', function(event, message) {
+      console.log(message);
+      openTab(message);
+});

@@ -1,11 +1,64 @@
-
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'">
-  <script>
-    require('../renderer.js')
-  </script>
+  <title>Options</title>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body style="-webkit-user-select:none; -webkit-app-region:drag;">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- The sidebar -->
+  <div class="sidebar" style="-webkit-app-region:no-drag;">
+    <p>Acronymu</p>
+    <a class="btn active" href="#AddToList" id="AddToListBtn" onclick="openTab('AddToList')" ><i class="fa fa-fw fa-plus-square"></i> Add to List</a>
+    <a class="btn" href="#Lists" id="ListsBtn" onclick="openTab('Lists')"><i class="fa fa-fw fa-list"></i> Lists</a>
+    <a class="btn" href="#Settings" id="SettingsBtn" onclick="openTab('Settings')"><i class="fa fa-fw fa-cog"></i> Settings</a>
+    <a class="btn" href="#LearnMore" id="LearnMoreBtn" onclick="openTab('LearnMore')" ><i class="fa fa-fw fa-envelope"></i> Learn More</a>
+  </div>
+
+  <main>
+    <!-- TAB 1 ADD TO LIST -->
+    <div class="tab" id="AddToList">
+      <h2>Add to List</h2>
+      <p>Choose a List to add</p>
+      <select name="listTxtSelect" id="listTxtsSelect" style="-webkit-app-region:no-drag;">
+        <option value="List1">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+      </select>
+      <p>Write comma seperated acronyms to add</p>
+      <textarea placeholder="LOL, League of Legends\n CS, Counter Strike "></textarea>
+
+    </div>
+
+    <!-- TAB 2 SETTINGS -->
+    <div class="tab" id="Settings">
+      <h2>Settings</h2>
+      <p>Sound</p>
+      <!-- Rounded switch-->
+      <label class="switch" style="-webkit-app-region:no-drag;">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+
+      <p>Notification Time</p>
+      <input type="number" value="10">
+    </div>
+
+      <!-- TAB 3 LISTS -->
+    <div class="tab" id="Lists">
+      <h2>Lists</h2>
+    </div>
+
+    <!-- TAB 4 LEARN MORE -->
+    <div class="tab" id="LearnMore">
+      <h2>Learn More</h2>
+    </div>
+  </main>
+
+  <script src="js/windowFunctions.js"></script>
 </body>
 </html>

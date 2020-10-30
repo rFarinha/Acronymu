@@ -6,13 +6,14 @@ let listsPath = './resources/'
 const EXTENSION = '.txt'
 let lists = []
 
+let browserWindow = null
 
-// TODO: When pressing tray button opens specific tab and activates tab
+//TODO Html for all tabs
 
 let tray = null
 app.whenReady().then(() => {
   CreateHiddenWindow()
-  tray = new Tray('resources/icon.png')
+  tray = new Tray('resources/img/icon.png')
   let contextMenu = Menu.buildFromTemplate(template)
   tray.setToolTip('Find your acronym.')
   tray.setContextMenu(contextMenu)
@@ -22,17 +23,19 @@ app.whenReady().then(() => {
 const template = [
   { label: app.name, enabled: false },
   { type: 'separator' },
-  { label: 'Add to List' },
+  { label: 'Add to List',
+  click() { CreateWindow('AddToList') }},
   {
     label: 'Lists', id: 'menu',
     submenu: [
-      { label: 'Create new List'},
+      { label: 'Create new List',
+      click() { CreateWindow('Lists') }},
       { type: 'separator' },
     ]
   },
   { type: 'separator' },
-  { label: 'Options',
-  click() { CreateWindow('options') }},
+  { label: 'Settings',
+  click() { CreateWindow('Settings') }},
   {label: 'Learn More',
   click: async () => {
     const { shell } = require('electron')
@@ -55,26 +58,33 @@ function readListFolder(menu){
 
 
 function CreateWindow(page){
-    browserWindow = new BrowserWindow({
-    height: 600, width: 500,
-    resizable: false,
-    title: page,
-    minimizable: false,
-    fullscreenable: false,
-    frame: false,
-    webPreferences: { nodeIntegration: true }
-  })
+  if(!browserWindow){
+      browserWindow = new BrowserWindow({
+      height: 600, width: 500,
+      resizable: false,
+      title: page,
+      minimizable: false,
+      fullscreenable: false,
+      frame: false,
+      webPreferences: { nodeIntegration: true }
+    })
 
-  // Load index.html into the new BrowserWindow
-  browserWindow.loadFile(listsPath + page + '.html')
+    // Load index.html into the new BrowserWindow
+    browserWindow.loadFile('./resources/index.html')
 
-  // Open DevTools - Remove for PRODUCTION!
-  browserWindow.webContents.openDevTools();
+    // Open DevTools - Remove for PRODUCTION!
+    //browserWindow.webContents.openDevTools();
 
-  // Listen for window being closed
-  browserWindow.on('closed',  () => {
-    browserWindow = null
-  })
+    // Listen for window being closed
+    browserWindow.on('closed',  () => {
+      browserWindow = null
+    })
+    browserWindow.webContents.on('did-finish-load', function() {
+      browserWindow.webContents.send('StartingWindow', page)
+    });
+  }else{
+    browserWindow.webContents.send('StartingWindow', page)
+  }
 }
 
 // Necessary tp have notifications
@@ -84,5 +94,5 @@ function CreateHiddenWindow(){
     show: false,
     webPreferences: { nodeIntegration: true }
   })
-  optionsWindow.loadFile(listsPath + 'index.html')
+  optionsWindow.loadFile('./resources/hidden.html')
 }

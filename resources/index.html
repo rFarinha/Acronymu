@@ -23,15 +23,11 @@
     <div class="tab" id="AddToList">
       <h2>Add to List</h2>
       <p>Choose a List to add</p>
-      <select name="listTxtSelect" id="listTxtsSelect" style="-webkit-app-region:no-drag;">
-        <option value="List1">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
-      </select>
-      <p>Write comma seperated acronyms to add</p>
-      <textarea placeholder="LOL, League of Legends\n CS, Counter Strike "></textarea>
-
+      <select id="listTxtsSelect" style="-webkit-app-region:no-drag;"></select>
+      <p>Write each acronym in a new line seperated by comma</p>
+      <textarea placeholder="ACRONYM, meaning" style="-webkit-app-region:no-drag;"></textarea>
+      <button id="addAcronym">Add</button>
+      <button id="removeAcronym">Remove</button>
     </div>
 
     <!-- TAB 2 SETTINGS -->

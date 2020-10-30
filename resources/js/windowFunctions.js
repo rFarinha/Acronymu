@@ -1,3 +1,6 @@
+const fs = require('fs');
+let listsPath = './resources/'
+const EXTENSION = '.txt'
 // Change TAB
 function openTab(Tab) {
 
@@ -14,7 +17,7 @@ function openTab(Tab) {
   for (i = 0; i < x.length; i++) {
     x[i].style.display = "none";
   }
-  
+
   document.getElementById(Tab).style.display = "block";
 }
 
@@ -26,4 +29,16 @@ function openTab(Tab) {
 require('electron').ipcRenderer.on('StartingWindow', function(event, message) {
       console.log(message);
       openTab(message);
+});
+
+
+fs.readdir(listsPath, (err, files) => {
+  let listSelector = document.getElementById("listTxtsSelect");
+  files.forEach(file => {
+    if(file.slice(-4, file.length) === EXTENSION){
+      let option = document.createElement("option");
+      option.text = file;
+      listSelector.add(option)
+    }
+  });
 });

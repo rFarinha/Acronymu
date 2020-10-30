@@ -142,6 +142,10 @@ textarea {
   height: 100px;
 }
 
+select {
+  width: 280px;
+}
+
 #AddToList {
   display: none;
 }

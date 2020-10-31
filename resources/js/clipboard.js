@@ -2,10 +2,11 @@
 const { clipboard } = require('electron')
 // Access to read file
 const fs = require("fs")
+const settings = require("./settings")
 
 //SETTINGS
 let acronymMaxSize = 10
-let intervalToReadCipboard = 1000 // ms
+let intervalToReadCipboard = settings.getClipboardRefreshRate()// ms
 
 //VARAIBLES INIT
 let acronym = ''
@@ -17,7 +18,7 @@ let file = 'IP.txt'
 let acronymArray = transformTxtToArray(path, file)
 
 // Repeat mainLoop function every {intervalToReadCipboard} seconds
-setInterval(mainLoop, intervalToReadCipboard)
+setInterval(mainLoop, settings.getClipboardRefreshRate())
 
 function mainLoop(){
   acronymToSearch = readClipBoard()
@@ -26,7 +27,7 @@ function mainLoop(){
     let [title, body] = searchList(acronymToSearch, acronymArray);
     // push notification
     if(title && body){
-      pushNotification(title, body);
+      pushNotification(title, body, !settings.getSoundState());
     }
   }
 }
@@ -47,9 +48,12 @@ function readClipBoard () {
 
 
 function pushNotification (title, text, silence = true){
+
   const myNotification = new Notification(title, {
     body: text,
-    silent: silence
+    silent: silence,
+    icon: './img/icon.png',
+    timeoutType: 'default',
   })
 }
 

@@ -2,13 +2,15 @@ const { app, Menu, MenuItem, BrowserWindow, Tray } = require('electron')
 const fs = require('fs'); // access files
 
 const isMac = process.platform === 'darwin'
+
 let listsPath = './resources/'
 const EXTENSION = '.txt'
 let lists = []
 
 let browserWindow = null
 
-//TODO Html for all tabs
+// TODO 1. Have a refresh function when path changes
+//      2. Have a refresh button somewhere on tray
 
 let tray = null
 app.whenReady().then(() => {
@@ -37,14 +39,12 @@ const template = [
   { label: 'Settings',
   click() { CreateWindow('Settings') }},
   {label: 'Learn More',
-  click: async () => {
-    const { shell } = require('electron')
-    await shell.openExternal('https://electronjs.org')
-  }},
+  click() { CreateWindow('LearnMore') }},
   { type: 'separator' },
   isMac ? { role: 'close' } : { role: 'quit' }
 ]
 
+// Read folder and adds to Tray all the lists found
 function readListFolder(menu){
   fs.readdir(listsPath, (err, files) => {
     let menuList = menu.getMenuItemById('menu')
@@ -56,7 +56,6 @@ function readListFolder(menu){
   lists = files});
 }
 
-
 function CreateWindow(page){
   if(!browserWindow){
       browserWindow = new BrowserWindow({
@@ -66,7 +65,11 @@ function CreateWindow(page){
       minimizable: false,
       fullscreenable: false,
       frame: false,
-      webPreferences: { nodeIntegration: true }
+      icon: './resources/img/icon.png',
+      webPreferences: {
+        nodeIntegration: true,
+        enableRemoteModule: true,
+       }
     })
 
     // Load index.html into the new BrowserWindow
@@ -83,6 +86,7 @@ function CreateWindow(page){
       browserWindow.webContents.send('StartingWindow', page)
     });
   }else{
+    browserWindow.focus()
     browserWindow.webContents.send('StartingWindow', page)
   }
 }
@@ -95,4 +99,6 @@ function CreateHiddenWindow(){
     webPreferences: { nodeIntegration: true }
   })
   optionsWindow.loadFile('./resources/hidden.html')
+
+  optionsWindow.webContents.send('StartUp')
 }

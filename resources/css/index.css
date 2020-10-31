@@ -13,7 +13,6 @@ html, body {
   background: #FFFFFF;
   color: #404040;
   height: 100%;
-  overflow: hidden;
   margin: 0;
 }
 
@@ -56,6 +55,7 @@ h2 {
 /* Style links on mouse-over */
 .sidebar a:hover {
   background-color: #E8E8E8;
+  cursor: pointer;
 }
 
 .sidebar a.active {
@@ -66,6 +66,7 @@ h2 {
 main {
   margin-left: 170px; /* Same as the width of the sidenav */
   padding: 0px 10px;
+  float: left;
 }
 
 /* Add media queries for small screens (when the height of the screen is less than 450px, add a smaller padding and font-size)*/
@@ -78,8 +79,8 @@ main {
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 48px;
+  height: 24px;
 }
 
 /* Hide default HTML checkbox */
@@ -105,10 +106,10 @@ main {
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
+  height: 19px;
+  width: 19px;
+  left: 3px;
+  bottom: 3px;
   background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
@@ -123,14 +124,14 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(21px);
+  -ms-transform: translateX(21px);
+  transform: translateX(21px);
 }
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+  border-radius: 27px;
 }
 
 .slider.round:before {
@@ -160,4 +161,69 @@ select {
 
 #LearnMore {
   display: none;
+}
+
+.item{
+  background: #FAFAFA;
+  margin: 10px;
+  width: 100%;
+}
+
+
+#list-items{
+  overflow: scroll;
+  padding: 5px;
+  padding-top: 15px;
+  width: 90%;
+  height: 100px;
+}
+
+.delete-btn{
+  background-color:#F86754;
+  color:white;
+  border-radius:5px;
+  border: 0px;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+button.delete-btn:hover{
+  background-color:#F63B22;
+}
+
+button.list-btn{
+  width: 255px;
+  height: 25px;
+  cursor: pointer;
+  border: 0px;
+  border-radius:2px;
+  background-color:#E8E8E8;
+}
+
+button.list-btn:hover{
+  background-color:lightgrey;
+}
+
+#folderIcon{
+  width: 25px;
+  height: 25px;
+  background-color: #E8E8E8;
+  border-radius: 3px;
+  border: 3px;
+  border-color: black;
+}
+
+#folderIcon:hover{
+  cursor: pointer;
+  background-color: lightgrey;
+}
+
+#folderPath{
+  width: 255px;
+  height: 25px;
+  cursor: pointer;
+  border: 0px;
+  border-radius:2px;
+  background-color:#E8E8E8;
 }

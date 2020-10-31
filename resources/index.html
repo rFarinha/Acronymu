@@ -12,10 +12,10 @@
   <!-- The sidebar -->
   <div class="sidebar" style="-webkit-app-region:no-drag;">
     <p>Acronymu</p>
-    <a class="btn active" href="#AddToList" id="AddToListBtn" onclick="openTab('AddToList')" ><i class="fa fa-fw fa-plus-square"></i> Add to List</a>
-    <a class="btn" href="#Lists" id="ListsBtn" onclick="openTab('Lists')"><i class="fa fa-fw fa-list"></i> Lists</a>
-    <a class="btn" href="#Settings" id="SettingsBtn" onclick="openTab('Settings')"><i class="fa fa-fw fa-cog"></i> Settings</a>
-    <a class="btn" href="#LearnMore" id="LearnMoreBtn" onclick="openTab('LearnMore')" ><i class="fa fa-fw fa-envelope"></i> Learn More</a>
+    <a class="btn active" id="AddToListBtn"><i class="fa fa-fw fa-plus-square"></i> Add to List</a>
+    <a class="btn" id="ListsBtn"><i class="fa fa-fw fa-list"></i> Lists</a>
+    <a class="btn" id="SettingsBtn"><i class="fa fa-fw fa-cog"></i> Settings</a>
+    <a class="btn" id="LearnMoreBtn"><i class="fa fa-fw fa-envelope"></i> Learn More</a>
   </div>
 
   <main>
@@ -24,30 +24,38 @@
       <h2>Add to List</h2>
       <p>Choose a List to add</p>
       <select id="listTxtsSelect" style="-webkit-app-region:no-drag;"></select>
-      <p>Write each acronym in a new line seperated by comma</p>
-      <textarea placeholder="ACRONYM, meaning" style="-webkit-app-region:no-drag;"></textarea>
-      <button id="addAcronym">Add</button>
-      <button id="removeAcronym">Remove</button>
+      <p>Write each acronym in a new line seperated by a comma</p>
+      <textarea id="text-area-to-add" placeholder="ACRONYM, meaning" style="-webkit-app-region:no-drag;"></textarea>
+      <button id="addAcronym" onclick="addToList()" style="-webkit-app-region:no-drag;">Add</button>
+      <button id="removeAcronym" style="-webkit-app-region:no-drag;">Remove</button>
     </div>
 
-    <!-- TAB 2 SETTINGS -->
-    <div class="tab" id="Settings">
-      <h2>Settings</h2>
-      <p>Sound</p>
-      <!-- Rounded switch-->
-      <label class="switch" style="-webkit-app-region:no-drag;">
-        <input type="checkbox">
-        <span class="slider round"></span>
-      </label>
-
-      <p>Notification Time</p>
-      <input type="number" value="10">
-    </div>
-
-      <!-- TAB 3 LISTS -->
+    <!-- TAB 2 LISTS -->
     <div class="tab" id="Lists">
       <h2>Lists</h2>
+      <button id="createList" style="-webkit-app-region:no-drag;">Create new List</button>
+      <p id="no-lists">No Lists</p>
+      <div id="list-item" style="-webkit-app-region:no-drag;"></div>
     </div>
+
+
+    <!-- TAB 3 SETTINGS -->
+    <div class="tab" id="Settings">
+      <h2>Settings</h2>
+      <p>Notification Sound</p>
+      <!-- Rounded switch-->
+      <label class="switch" style="-webkit-app-region:no-drag;">
+        <input id="sound-switch" type="checkbox">
+        <span class="slider round"></span>
+      </label>
+      <p>Check Clipboard every (ms)</p>
+      <input id="clipboardRefreshRate" type="number" min="100" max="10000" style="-webkit-app-region:no-drag;">
+      <p>Path to folder with lists with acronyms</p>
+      <p id="pathToAcronyms" type="text" style="-webkit-app-region:no-drag;"></p>
+      <p id="folderPath"></p><input id="folderIcon" type="image" src="./img/folder-open-regular.svg" style="-webkit-app-region:no-drag;">
+
+    </div>
+
 
     <!-- TAB 4 LEARN MORE -->
     <div class="tab" id="LearnMore">
@@ -55,6 +63,11 @@
     </div>
   </main>
 
-  <script src="js/windowFunctions.js"></script>
+  <script>
+  require("./js/windowFunctions.js")
+  </script>
+  <!--<script src="js/windowFunctions.js"></script>
+  <script src="js/listFunctions.js"></script>
+  <script src="js/storage.js"></script>-->
 </body>
 </html>

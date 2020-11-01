@@ -10,6 +10,14 @@ exports.getFolderPath = () => {
   return localStorage.getItem('listFolder')
 }
 
+exports.setSelectedList = (list) => {
+  localStorage.setItem('listSelected', list)
+}
+
+exports.getSeletedList = () => {
+  return localStorage.setItem('listSelected')
+}
+
 exports.setClipboardRefreshRate = (time) => {
   localStorage.setItem('ClipboardRefreshRate', time)
 }

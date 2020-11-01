@@ -4,6 +4,9 @@ const { clipboard } = require('electron')
 const fs = require("fs")
 const settings = require("./settings")
 
+// Access to mensages from main.js
+const { ipcRenderer } = require('electron')
+
 //SETTINGS
 let acronymMaxSize = 10
 let intervalToReadCipboard = settings.getClipboardRefreshRate()// ms
@@ -18,7 +21,8 @@ let file = 'IP.txt'
 let acronymArray = transformTxtToArray(path, file)
 
 // Repeat mainLoop function every {intervalToReadCipboard} seconds
-setInterval(mainLoop, settings.getClipboardRefreshRate())
+sendInfoToMain()
+setInterval(mainLoop, intervalToReadCipboard)
 
 function mainLoop(){
   acronymToSearch = readClipBoard()
@@ -76,4 +80,10 @@ function searchList(acronymToSearch, array){
 function transformTxtToArray(path, file){
   var data = fs.readFileSync(path + file);
   return data.toString().split("\n");
+}
+
+
+function sendInfoToMain(){
+  let folderPath = settings.getFolderPath()
+  ipcRenderer.sendSync('folderPath', folderPath)
 }

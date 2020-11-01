@@ -1,14 +1,15 @@
 const { app, Menu, MenuItem, BrowserWindow, Tray } = require('electron')
 const fs = require('fs'); // access files
+const settings = require('./resources/js/settings')
+const { ipcMain } = require( "electron" );
 
 const isMac = process.platform === 'darwin'
 
-let listsPath = './resources/'
 const EXTENSION = '.txt'
 let lists = []
 
 let browserWindow = null
-
+let contextMenu = new Menu()
 // TODO 1. Have a refresh function when path changes
 //      2. Have a refresh button somewhere on tray
 
@@ -16,13 +17,14 @@ let tray = null
 app.whenReady().then(() => {
   CreateHiddenWindow()
   tray = new Tray('resources/img/icon.png')
-  let contextMenu = Menu.buildFromTemplate(template)
+  contextMenu = Menu.buildFromTemplate(template)
   tray.setToolTip('Find your acronym.')
   tray.setContextMenu(contextMenu)
-  readListFolder(contextMenu)
+  console.log('Tray created...')
+  //readListFolder(contextMenu)
 })
 
-const template = [
+let template = [
   { label: app.name, enabled: false },
   { type: 'separator' },
   { label: 'Add to List',
@@ -43,18 +45,6 @@ const template = [
   { type: 'separator' },
   isMac ? { role: 'close' } : { role: 'quit' }
 ]
-
-// Read folder and adds to Tray all the lists found
-function readListFolder(menu){
-  fs.readdir(listsPath, (err, files) => {
-    let menuList = menu.getMenuItemById('menu')
-    files.forEach(file => {
-      if(file.slice(-4, file.length) === EXTENSION){
-        menuList.submenu.append(new MenuItem({label:file.slice(0,-4), type: 'radio'}))
-      }
-    });
-  lists = files});
-}
 
 function CreateWindow(page){
   if(!browserWindow){
@@ -94,11 +84,42 @@ function CreateWindow(page){
 // Necessary tp have notifications
 function CreateHiddenWindow(){
   optionsWindow = new BrowserWindow({
-    height: 1, width: 1,
-    show: false,
-    webPreferences: { nodeIntegration: true }
+    height: 500, width: 500,
+    show: true, // true for debugging
+    webPreferences: {
+      nodeIntegration: true,
+      enableRemoteModule: true,
+     }
   })
   optionsWindow.loadFile('./resources/hidden.html')
+  console.log('Hidden window created...')
 
-  optionsWindow.webContents.send('StartUp')
+  // Open DevTools - Remove for PRODUCTION!
+  optionsWindow.webContents.openDevTools();
+}
+
+
+// REFRESH TRAY MENU
+
+ipcMain.on( "folderPath", ( event, folderPath ) => {
+  console.log("Update Tray Menu")
+  UpdateTrayMenu(contextMenu, folderPath)
+})
+
+// Read folder and adds to Tray all the lists found
+function UpdateTrayMenu(menu, folderPath){
+  // Clean Tray Menu
+  menu =  Menu.buildFromTemplate(template)
+  tray.setContextMenu(menu)
+
+  // Add from folder all lists to Tray Menu
+  fs.readdir(folderPath, (err, files) => {
+    let menuList = menu.getMenuItemById('menu')
+    files.forEach(file => {
+      if(file.slice(-4, file.length) === EXTENSION){
+        menuList.submenu.append(new MenuItem({label:file.slice(0,-4), type: 'radio'}))
+      }
+    });
+  lists = files
+  });
 }

@@ -2,6 +2,7 @@ const fs = require('fs');
 const { shell, ipcRenderer } = require('electron')
 const { dialog } = require('electron').remote
 const settings = require('./settings.js')
+const listFunctions = require('./listFunctions')
 
 
 let listsPath = './resources/'
@@ -12,15 +13,21 @@ let addToListBtn = document.getElementById('AddToListBtn')
     listsBtn = document.getElementById('ListsBtn')
     settingsBtn = document.getElementById('SettingsBtn')
     learnMoreBtn = document.getElementById('LearnMoreBtn')
+// ADD TO LIST elements
+let listTxtsSelect = document.getElementById("listTxtsSelect");
+    textAreaToAdd = document.getElementById("text-area-to-add");
+    addAcronym = document.getElementById("addAcronym");
+    removeAcronym = document.getElementById("removeAcronym");
+
+// LISTs Tab elements
+let listItems = document.getElementById('list-item')
+    noItemP = document.getElementById('no-lists')
 
 // SETTINGs elements
 let soundSwitch = document.getElementById("sound-switch");
     clipboardRefreshRate = document.getElementById("clipboardRefreshRate");
     folderIcon = document.getElementById("folderIcon");
     folderPath = document.getElementById("folderPath");
-
-let items = document.getElementById('list-item')
-    noItemP = document.getElementById('no-lists')
 
 let btns = document.getElementsByClassName("btn");
     tabs = document.getElementsByClassName("tab");
@@ -59,6 +66,20 @@ learnMoreBtn.addEventListener('click', e => {
   openTab('LearnMore')
 })
 
+//************ ADD to List Buttons ****************
+addAcronym.addEventListener('click', e => {
+  listFunctions.addToList(
+    settings.getFolderPath() + '\\' + listTxtsSelect.value, // LIST
+    textAreaToAdd.value) // TEXT
+})
+
+removeAcronym.addEventListener('click', e => {
+  listFunctions.removeFromList(
+    settings.getFolderPath() + '\\' + listTxtsSelect.value, // LIST
+    textAreaToAdd.value) // TEXT
+})
+
+
 //************ SETTINGS Buttons *******************
 soundSwitch.addEventListener('click', e => {
   settings.setSoundState(soundSwitch.checked)
@@ -73,6 +94,9 @@ folderIcon.addEventListener('click', e => {
   let pathToLists = getPathFromUser()
   settings.saveFolderPath(pathToLists)
   folderPath.innerHTML = pathToLists
+  UpdateListOfListsHtml()
+  //console.log('SendingInfoToMain')
+  ipcRenderer.send('folderPath', pathToLists)
 })
 
 
@@ -85,38 +109,56 @@ ipcRenderer.on('StartingWindow', function(event, message) {
       soundSwitch.checked = settings.getSoundState()
       clipboardRefreshRate.value = settings.getClipboardRefreshRate()
       folderPath.innerHTML = settings.getFolderPath()
+      UpdateListOfListsHtml()
 });
 
 
 //************ FUNCTIONS BEING USED *******************
-
-fs.readdir(listsPath, (err, files) => {
-  let listSelector = document.getElementById("listTxtsSelect");
-  files.forEach(file => {
-    if(file.slice(-4, file.length) === EXTENSION){
-      let option = document.createElement("option");
-      option.text = file;
-      listSelector.add(option)
-      noItemP.style.display = "none";
-      addItem(file, items)
-    }
+function UpdateListOfListsHtml(){
+  fs.readdir(settings.getFolderPath(), (err, files) => {
+    removeItems()
+    files.forEach(file => {
+      if(file.slice(-4, file.length) === EXTENSION){
+        let option = document.createElement("option");
+        option.text = file;
+        listTxtsSelect.add(option)
+        noItemP.style.display = "none";
+        addItem(file, listItems)
+      }
+    });
   });
-});
+}
 
 
 function addItem(item, items){
   let itemNode = document.createElement('div')
   itemNode.setAttribute('class', 'item')
-  itemNode.innerHTML = `<button class="list-btn" onclick="openFile('${item}')">${item}</button><button class="delete-btn">X</button>`
+  itemNode.innerHTML = `<button class="list-btn" id="${item}-list-btn')">${item}</button><button class="delete-btn">X</button>`
 
   items.appendChild(itemNode)
 }
 
+function removeItems(){
+
+  // REMOVE from select in TAB 1 (Add to List)
+  let selectLength = listTxtsSelect.length
+  console.log(`removing ${selectLength} items...`)
+  for (i = selectLength-1; i >= 0; i--) {
+    listTxtsSelect.options[i] = null;
+  }
+
+    // REMOVE from list in TAB 2 (Lists)
+    listItems.textContent = '';
+}
+
+
 function openFile(fileName){
-  shell.openExternal('C:/Users/Farinha/Projects/Acronymu/resources/' + fileName);
+  shell.openExternal(settings.getFolderPath + fileName);
   // saveFolderPath ()
   //console.log(storage.getFolderPath())
 }
+
+
 
 const getPathFromUser = () => {
 

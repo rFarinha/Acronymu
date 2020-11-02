@@ -1,13 +1,19 @@
-// DEFAULTS
+// DEFAULTS values for first time startup
 let soundState_default = true;
 let clipboardRefreshRate_default = 1000 // seconds
+let listPath_default = 'C:\\Users\\rafarinha\\Projects\\Acronymu\\Acronymu\\resources' // seconds
 
+// Save folder path with all the lists
 exports.saveFolderPath = (path) => {
   localStorage.setItem('listFolder',path)
 }
 
+// Return folder path saved
 exports.getFolderPath = () => {
-  return localStorage.getItem('listFolder')
+  let folderPath = localStorage.getItem('listFolder')
+  if(folderPath === null){
+    return listPath_default
+  }
 }
 
 exports.setSelectedList = (list) => {

@@ -10,8 +10,12 @@ let lists = []
 
 let browserWindow = null
 let contextMenu = new Menu()
-// TODO 1. Have a refresh function when path changes
-//      2. Have a refresh button somewhere on tray
+
+// TODO 1. (LOW) Modal show when add or remove to list (check udemy)
+//      2. (LOW) Write better explanation in Add to List
+//      3. (HIGH) Lists Tab select Active list and connect to TRAY
+//      4. (LOW) Max acronym size to settings
+//      5. (MEDIUM) Learn More Tab
 
 let tray = null
 app.whenReady().then(() => {
@@ -102,8 +106,9 @@ function CreateHiddenWindow(){
 // REFRESH TRAY MENU
 
 ipcMain.on( "folderPath", ( event, folderPath ) => {
-  console.log("Update Tray Menu")
+  console.log("Update Tray Menu...")
   UpdateTrayMenu(contextMenu, folderPath)
+  console.log("Tray Menu updated")
 })
 
 // Read folder and adds to Tray all the lists found

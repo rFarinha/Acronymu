@@ -227,3 +227,31 @@ button.list-btn:hover{
   border-radius:2px;
   background-color:#E8E8E8;
 }
+
+#addAcronym{
+  background-color:#92c353;
+  color:white;
+  border-radius:5px;
+  border: 0px;
+  width: 140px;
+  height: 25px;
+  cursor: pointer;
+}
+
+#addAcronym:hover{
+  background-color: #759c43;
+}
+
+#removeAcronym{
+  background-color:#F86754;
+  color:white;
+  border-radius:5px;
+  border: 0px;
+  width: 140px;
+  height: 25px;
+  cursor: pointer;
+}
+
+#removeAcronym:hover{
+  background-color:#F63B22;
+}

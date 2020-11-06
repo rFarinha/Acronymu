@@ -85,5 +85,10 @@ function transformTxtToArray(path, file){
 
 function sendInfoToMain(){
   let folderPath = settings.getFolderPath()
-  ipcRenderer.sendSync('folderPath', folderPath)
+  ipcRenderer.send('folderPath', folderPath)
 }
+
+ipcRenderer.on('saveActiveList', function(event, message) {
+  console.log('helloi')
+  console.log(message)
+})

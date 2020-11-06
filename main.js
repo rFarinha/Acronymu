@@ -80,8 +80,8 @@ function CreateWindow(page){
       browserWindow.webContents.send('StartingWindow', page)
     });
   }else{
-    browserWindow.focus()
     browserWindow.webContents.send('StartingWindow', page)
+    browserWindow.focus()
   }
 }
 
@@ -135,4 +135,5 @@ function UpdateTrayMenu(menu, folderPath){
 // Handle RADIO tray buttons
 function ChangeActiveList(list){
   console.log(list)
+  optionsWindow.webContents.send('saveActiveList', list)
 }

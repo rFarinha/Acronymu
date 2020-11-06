@@ -11,7 +11,7 @@ let lists = []
 let browserWindow = null
 let contextMenu = new Menu()
 
-// TODO 1. (LOW) Modal show when add or remove to list (check udemy)
+// TODO 1. DONE (LOW) Modal show when add or remove to list (check udemy)
 //      2. (LOW) Write better explanation in Add to List
 //      3. (HIGH) Lists Tab select Active list and connect to TRAY
 //      4. (LOW) Max acronym size to settings
@@ -122,9 +122,17 @@ function UpdateTrayMenu(menu, folderPath){
     let menuList = menu.getMenuItemById('menu')
     files.forEach(file => {
       if(file.slice(-4, file.length) === EXTENSION){
-        menuList.submenu.append(new MenuItem({label:file.slice(0,-4), type: 'radio'}))
+        menuList.submenu.append(new MenuItem(
+          {label:file.slice(0,-4),
+            type: 'radio',
+            click: () => ChangeActiveList(file)}))
       }
     });
-  lists = files
+  // lists = files
   });
+}
+// ChangeActiveList('hello')
+// Handle RADIO tray buttons
+function ChangeActiveList(list){
+  console.log(list)
 }

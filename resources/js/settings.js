@@ -3,27 +3,31 @@ let soundState_default = true;
 let clipboardRefreshRate_default = 1000 // seconds
 let listPath_default = 'C:\\Users\\rafarinha\\Projects\\Acronymu\\Acronymu\\resources' // seconds
 
-// Save folder path with all the lists
+//********** FOLDER PATH ***************
 exports.saveFolderPath = (path) => {
   localStorage.setItem('listFolder',path)
 }
 
-// Return folder path saved
 exports.getFolderPath = () => {
   let folderPath = localStorage.getItem('listFolder')
   if(folderPath === null){
     return listPath_default
   }
+  return folderPath
 }
 
-exports.setSelectedList = (list) => {
-  localStorage.setItem('listSelected', list)
+
+//********** ACTIVE LIST ***************
+exports.setActiveList = (list) => {
+  localStorage.setItem('activeList', list)
 }
 
-exports.getSeletedList = () => {
-  return localStorage.setItem('listSelected')
+exports.getActiveList = (list) => {
+  return localStorage.getItem('activeList')
 }
 
+
+//*******CLIPBOARD REFRESH RATE *********
 exports.setClipboardRefreshRate = (time) => {
   localStorage.setItem('ClipboardRefreshRate', time)
 }
@@ -39,6 +43,7 @@ exports.getClipboardRefreshRate = () => {
   return Number(time)
 }
 
+//********** SOUND STATE ***************
 exports.setSoundState = (state) => {
   localStorage.setItem('sound', state)
   console.log('Sound is ' + state)

@@ -71,12 +71,14 @@ addAcronym.addEventListener('click', e => {
   listFunctions.addToList(
     settings.getFolderPath() + '\\' + listTxtsSelect.value, // LIST
     textAreaToAdd.value) // TEXT
+    CleanTextArea()
 })
 
 removeAcronym.addEventListener('click', e => {
   listFunctions.removeFromList(
     settings.getFolderPath() + '\\' + listTxtsSelect.value, // LIST
     textAreaToAdd.value) // TEXT
+    CleanTextArea()
 })
 
 
@@ -172,4 +174,11 @@ const getPathFromUser = () => {
     }
     console.log(pathArray[0])
     return pathArray[0]
+}
+
+function CleanTextArea(){
+  // Clean text textArea
+  textAreaToAdd.value = ''
+  textAreaToAdd.placeholder = 'Added'
+  setInterval(function(){textAreaToAdd.placeholder = 'ACRONYM, meaning'},3000);
 }

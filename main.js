@@ -11,12 +11,11 @@ let lists = []
 let browserWindow = null
 let contextMenu = new Menu()
 
-// TODO 1. DONE (LOW) Modal show when add or remove to list (check udemy)
-//      2. (LOW) Write better explanation in Add to List
-//      3. (HIGH) Lists Tab select Active list and connect to TRAY
+// TODO 2. (LOW) Write better explanation in Add to List
 //      4. (LOW) Max acronym size to settings
 //      5. (MEDIUM) Learn More Tab
-
+//      6. (LOW) Redo TRY and CATCH with every and return
+//      7. (BUG) clipboard.js now attached to windowsFunction causing double notification
 let tray = null
 app.whenReady().then(() => {
   CreateHiddenWindow()
@@ -105,14 +104,15 @@ function CreateHiddenWindow(){
 
 // REFRESH TRAY MENU
 
-ipcMain.on( "folderPath", ( event, folderPath ) => {
+ipcMain.on( "folderPath", ( event, pathAndList) => {
   console.log("Update Tray Menu...")
-  UpdateTrayMenu(contextMenu, folderPath)
+  let [folderPath, activeList] = pathAndList.split(',')
+  UpdateTrayMenu(contextMenu, folderPath, activeList)
   console.log("Tray Menu updated")
 })
 
 // Read folder and adds to Tray all the lists found
-function UpdateTrayMenu(menu, folderPath){
+function UpdateTrayMenu(menu, folderPath, activeList){
   // Clean Tray Menu
   menu =  Menu.buildFromTemplate(template)
   tray.setContextMenu(menu)
@@ -122,10 +122,18 @@ function UpdateTrayMenu(menu, folderPath){
     let menuList = menu.getMenuItemById('menu')
     files.forEach(file => {
       if(file.slice(-4, file.length) === EXTENSION){
-        menuList.submenu.append(new MenuItem(
-          {label:file.slice(0,-4),
-            type: 'radio',
-            click: () => ChangeActiveList(file)}))
+        if(file === activeList){
+          menuList.submenu.append(new MenuItem(
+            {label:file.slice(0,-4),
+              type: 'radio',
+              checked: true,
+              click: () => ChangeActiveList(file)}))
+        }else{
+          menuList.submenu.append(new MenuItem(
+            {label:file.slice(0,-4),
+              type: 'radio',
+              click: () => ChangeActiveList(file)}))
+        }
       }
     });
   // lists = files
@@ -136,4 +144,7 @@ function UpdateTrayMenu(menu, folderPath){
 function ChangeActiveList(list){
   console.log(list)
   optionsWindow.webContents.send('saveActiveList', list)
+  if(browserWindow !== null){
+      browserWindow.webContents.send('saveActiveList', list)
+  }
 }

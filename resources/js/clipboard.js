@@ -14,18 +14,19 @@ let intervalToReadCipboard = settings.getClipboardRefreshRate()// ms
 //VARAIBLES INIT
 let acronym = ''
 let sigla = ''
-let path = 'resources/'
-let file = 'IP.txt'
+//let path = 'resources/'
+//let file = 'IP.txt'
 
-// Transform txt with acronyms into array
-let acronymArray = transformTxtToArray(path, file)
+let acronymArray = []
 
 // Repeat mainLoop function every {intervalToReadCipboard} seconds
 sendInfoToMain()
+newListIsSelected()
 setInterval(mainLoop, intervalToReadCipboard)
 
 function mainLoop(){
   acronymToSearch = readClipBoard()
+  //acronymArray = newListIsSelected()
   console.log(acronymToSearch)
   if(acronymToSearch){
     let [title, body] = searchList(acronymToSearch, acronymArray);
@@ -77,8 +78,20 @@ function searchList(acronymToSearch, array){
   return [title, body]
 }
 
+function newListIsSelected(){
+  console.log('new list...')
+  path = settings.getFolderPath()
+  file = settings.getActiveList()
+  console.log('path + file: ' + path + '\\' + file)
+  acronymArray =  transformTxtToArray(path, file)
+}
+
+module.exports = { newListIsSelected };
+
+// Transform txt with acronyms into array
 function transformTxtToArray(path, file){
-  var data = fs.readFileSync(path + file);
+  console.log('New Array created...')
+  var data = fs.readFileSync(path + '\\' +  file);
   return data.toString().split("\n");
 }
 
@@ -89,6 +102,7 @@ function sendInfoToMain(){
 }
 
 ipcRenderer.on('saveActiveList', function(event, message) {
-  console.log('helloi')
   console.log(message)
+  settings.setActiveList(message)
+  newListIsSelected()
 })

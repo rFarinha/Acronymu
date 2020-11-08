@@ -165,7 +165,8 @@ select {
 
 .item{
   background: #FAFAFA;
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   width: 100%;
 }
 
@@ -202,7 +203,11 @@ button.list-btn{
 }
 
 button.list-btn:hover{
-  background-color:lightgrey;
+  background-color: #a3a3a3;
+}
+
+.list-btn.active{
+  background-color: #c7c7c7;
 }
 
 #folderIcon{
@@ -228,7 +233,7 @@ button.list-btn:hover{
   background-color:#E8E8E8;
 }
 
-#addAcronym{
+.greenBtn{
   background-color:#92c353;
   color:white;
   border-radius:5px;
@@ -238,7 +243,7 @@ button.list-btn:hover{
   cursor: pointer;
 }
 
-#addAcronym:hover{
+.greenBtn:hover{
   background-color: #759c43;
 }
 

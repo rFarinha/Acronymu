@@ -3,7 +3,7 @@ const { shell, ipcRenderer } = require('electron')
 const { dialog } = require('electron').remote
 const settings = require('./settings.js')
 const listFunctions = require('./listFunctions')
-
+const { newListIsSelected } = require( "./clipboard.js" );
 
 let listsPath = './resources/'
 const EXTENSION = '.txt'
@@ -22,6 +22,7 @@ let listTxtsSelect = document.getElementById("listTxtsSelect");
 // LISTs Tab elements
 let listItems = document.getElementById('list-item')
     noItemP = document.getElementById('no-lists')
+    itemsButtonArray = document.getElementsByClassName('list-btn')
 
 // SETTINGs elements
 let soundSwitch = document.getElementById("sound-switch");
@@ -58,6 +59,7 @@ addToListBtn.addEventListener('click', e => {
 })
 listsBtn.addEventListener('click', e => {
   openTab('Lists')
+  UpdateListOfListsHtml()
 })
 settingsBtn.addEventListener('click', e => {
   openTab('Settings')
@@ -81,6 +83,17 @@ removeAcronym.addEventListener('click', e => {
     CleanTextArea()
 })
 
+//*********** CREATE NEW LIST *********************
+
+document.addEventListener('click', function(e){
+  console.log('SAVING NEW active list')
+  if(e.target.classList.contains('list-btn')){
+    settings.setActiveList(e.target.id)
+    UpdateListOfListsHtml()
+    ipcRenderer.send('folderPath', settings.getFolderPath() + ',' + settings.getActiveList())
+  }
+})
+
 
 //************ SETTINGS Buttons *******************
 soundSwitch.addEventListener('click', e => {
@@ -93,12 +106,33 @@ clipboardRefreshRate.addEventListener('change', e => {
 })
 
 folderIcon.addEventListener('click', e => {
+  // Select PATH with lists
   let pathToLists = getPathFromUser()
+
+  // Read Files in PATH selected and try to find one TXT to activate
+  // UGLYYY
+  fs.readdir(pathToLists, (err, files) => {
+    let BreakException = {};
+    try{
+      files.forEach(file => {
+        if(file.slice(-4, file.length) === EXTENSION){
+          settings.setActiveList(file)
+          console.log('CHANGED ACTIVE LIST TO: ' + file)
+          throw BreakException;
+        }
+      })
+    }catch(e){
+      if (e !== BreakException) throw e;
+    }
+  })
+
+  // Save the PATH and HTML
   settings.saveFolderPath(pathToLists)
   folderPath.innerHTML = pathToLists
+  newListIsSelected()
   UpdateListOfListsHtml()
   //console.log('SendingInfoToMain')
-  ipcRenderer.send('folderPath', pathToLists)
+  ipcRenderer.send('folderPath', pathToLists + ',' + settings.getActiveList())
 })
 
 
@@ -133,10 +167,15 @@ function UpdateListOfListsHtml(){
 
 
 function addItem(item, items){
+  let activeItem = settings.getActiveList()
+  console.log(activeItem)
   let itemNode = document.createElement('div')
   itemNode.setAttribute('class', 'item')
-  itemNode.innerHTML = `<button class="list-btn" id="${item}-list-btn')">${item}</button><button class="delete-btn">X</button>`
-
+  if(item === activeItem){
+    itemNode.innerHTML = `<button class="list-btn active" id="${item}">${item}</button><button class="delete-btn">X</button>`
+  }else{
+    itemNode.innerHTML = `<button class="list-btn" id="${item}">${item}</button><button class="delete-btn">X</button>`
+  }
   items.appendChild(itemNode)
 }
 
@@ -182,3 +221,8 @@ function CleanTextArea(){
   textAreaToAdd.placeholder = 'Added'
   setInterval(function(){textAreaToAdd.placeholder = 'ACRONYM, meaning'},3000);
 }
+
+ipcRenderer.on('saveActiveList', function(event, message) {
+  console.log('UPDATE LISTS')
+  UpdateListOfListsHtml()
+})

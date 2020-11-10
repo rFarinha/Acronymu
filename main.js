@@ -15,7 +15,7 @@ let contextMenu = new Menu()
 //      4. (LOW) Max acronym size to settings
 //      5. (MEDIUM) Learn More Tab
 //      6. (LOW) Redo TRY and CATCH with every and return
-//      7. (BUG) clipboard.js now attached to windowsFunction causing double notification
+
 let tray = null
 app.whenReady().then(() => {
   CreateHiddenWindow()

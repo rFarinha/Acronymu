@@ -18,16 +18,21 @@ let sigla = ''
 //let file = 'IP.txt'
 
 let acronymArray = []
+let savedActiveList = ''
 
 // Repeat mainLoop function every {intervalToReadCipboard} seconds
 sendInfoToMain()
-newListIsSelected()
 setInterval(mainLoop, intervalToReadCipboard)
 
 function mainLoop(){
   acronymToSearch = readClipBoard()
   //acronymArray = newListIsSelected()
   console.log(acronymToSearch)
+  let currentActiveList = settings.getActiveList()
+  if(currentActiveList !== savedActiveList){
+    savedActiveList = currentActiveList
+    newListIsSelected()
+  }
   if(acronymToSearch){
     let [title, body] = searchList(acronymToSearch, acronymArray);
     // push notification

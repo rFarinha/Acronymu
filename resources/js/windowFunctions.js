@@ -3,7 +3,6 @@ const { shell, ipcRenderer } = require('electron')
 const { dialog } = require('electron').remote
 const settings = require('./settings.js')
 const listFunctions = require('./listFunctions')
-const { newListIsSelected } = require( "./clipboard.js" );
 
 let listsPath = './resources/'
 const EXTENSION = '.txt'
@@ -129,7 +128,6 @@ folderIcon.addEventListener('click', e => {
   // Save the PATH and HTML
   settings.saveFolderPath(pathToLists)
   folderPath.innerHTML = pathToLists
-  newListIsSelected()
   UpdateListOfListsHtml()
   //console.log('SendingInfoToMain')
   ipcRenderer.send('folderPath', pathToLists + ',' + settings.getActiveList())

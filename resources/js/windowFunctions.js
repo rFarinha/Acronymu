@@ -22,6 +22,7 @@ let listTxtsSelect = document.getElementById("listTxtsSelect");
 let listItems = document.getElementById('list-item')
     noItemP = document.getElementById('no-lists')
     itemsButtonArray = document.getElementsByClassName('list-btn')
+    deleteButtons = document.getElementsByClassName('delete-btn')
 
 // SETTINGs elements
 let soundSwitch = document.getElementById("sound-switch");
@@ -85,13 +86,21 @@ removeAcronym.addEventListener('click', e => {
 //*********** CREATE NEW LIST *********************
 
 document.addEventListener('click', function(e){
-  console.log('SAVING NEW active list')
   if(e.target.classList.contains('list-btn')){
+    console.log('SAVING NEW active list')
     settings.setActiveList(e.target.id)
     UpdateListOfListsHtml()
     ipcRenderer.send('folderPath', settings.getFolderPath() + ',' + settings.getActiveList())
+  }if(e.target.classList.contains('delete-btn')){
+     console.log('delete file...' + e.target.id)
+     console.log('SHOW MODAL')
   }
 })
+
+function showModalDeleteList(){
+
+}
+
 
 
 //************ SETTINGS Buttons *******************
@@ -109,7 +118,7 @@ folderIcon.addEventListener('click', e => {
   let pathToLists = getPathFromUser()
 
   // Read Files in PATH selected and try to find one TXT to activate
-  // UGLYYY
+  // UGLYYY -> try change with every
   fs.readdir(pathToLists, (err, files) => {
     let BreakException = {};
     try{
@@ -170,9 +179,9 @@ function addItem(item, items){
   let itemNode = document.createElement('div')
   itemNode.setAttribute('class', 'item')
   if(item === activeItem){
-    itemNode.innerHTML = `<button class="list-btn active" id="${item}">${item}</button><button class="delete-btn">X</button>`
+    itemNode.innerHTML = `<button class="list-btn active" id="${item}">${item}</button><button id="${item}" class="delete-btn">X</button>`
   }else{
-    itemNode.innerHTML = `<button class="list-btn" id="${item}">${item}</button><button class="delete-btn">X</button>`
+    itemNode.innerHTML = `<button class="list-btn" id="${item}">${item}</button><button id="${item}" class="delete-btn">X</button>`
   }
   items.appendChild(itemNode)
 }

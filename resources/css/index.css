@@ -193,8 +193,17 @@ button.delete-btn:hover{
   background-color:#F63B22;
 }
 
+.folder-btn{
+  color:white;
+  border-radius:5px;
+  border: 0px;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
 button.list-btn{
-  width: 255px;
+  width: 230px;
   height: 25px;
   cursor: pointer;
   border: 0px;

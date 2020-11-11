@@ -27,7 +27,7 @@
       <p>Write each acronym in a new line seperated by a comma</p>
       <textarea id="text-area-to-add" placeholder="ACRONYM, meaning" style="-webkit-app-region:no-drag;"></textarea>
       <button class="greenBtn" id="addAcronym" style="-webkit-app-region:no-drag;">Add</button>
-      <button id="removeAcronym" style="-webkit-app-region:no-drag;">Remove</button>
+      <button class="redBtn" id="removeAcronym" style="-webkit-app-region:no-drag;">Remove</button>
     </div>
 
     <!-- TAB 2 LISTS -->
@@ -36,6 +36,23 @@
       <button class="greenBtn" id="createList" style="-webkit-app-region:no-drag;">Create new List</button>
       <p id="no-lists">No Lists</p>
       <div id="list-item" style="-webkit-app-region:no-drag;"></div>
+      <!-- Popup Modal to make sure file is to be deleted -->
+      <div id="modalDelete" class="modal" style="-webkit-app-region:no-drag;">
+        <!-- modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Are you sure you want to delete this List?</p>
+          <button class="greenBtn" id="yesDelete">Yes</button><button class="redBtn" id="noDelete">No</button>
+        </div>
+      </div>
+      <div id="modalCreate" class="modal" style="-webkit-app-region:no-drag;">
+        <!-- modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <input id='nameNewList' type="text" value="Name.txt">
+          <button class="greenBtn" id="createListConfirmBtn">Create</button><button class="redBtn" id="noDelete">Cancel</button>
+        </div>
+      </div>
     </div>
 
 

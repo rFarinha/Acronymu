@@ -6,6 +6,7 @@ const listFunctions = require('./listFunctions')
 
 let listsPath = './resources/'
 const EXTENSION = '.txt'
+let modalTargetFile = ''
 
 // SIDEBAR elements
 let addToListBtn = document.getElementById('AddToListBtn')
@@ -23,6 +24,14 @@ let listItems = document.getElementById('list-item')
     noItemP = document.getElementById('no-lists')
     itemsButtonArray = document.getElementsByClassName('list-btn')
     deleteButtons = document.getElementsByClassName('delete-btn')
+    modalDelete = document.getElementById('modalDelete')
+    closeModal = document.getElementsByClassName("close");
+    yesDelete = document.getElementById('yesDelete')
+    noDelete = document.getElementById('noDelete')
+    modalCreate = document.getElementById('modalCreate')
+    createListBtn = document.getElementById('createList')
+    nameNewList = document.getElementById('nameNewList')
+    createListConfirmBtn = document.getElementById('createListConfirmBtn')
 
 // SETTINGs elements
 let soundSwitch = document.getElementById("sound-switch");
@@ -93,14 +102,55 @@ document.addEventListener('click', function(e){
     ipcRenderer.send('folderPath', settings.getFolderPath() + ',' + settings.getActiveList())
   }if(e.target.classList.contains('delete-btn')){
      console.log('delete file...' + e.target.id)
-     console.log('SHOW MODAL')
+     modalTargetFile = e.target.id
+     showModalDeleteList()
   }
 })
 
-function showModalDeleteList(){
+// MODAL DELETE content functions
 
+function showModalDeleteList(){
+  modalDelete.style.display = "block";
 }
 
+closeModal[0].onclick = function() {
+  modalDelete.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modalDelete || event.target == modalCreate ) {
+    modalDelete.style.display = "none";
+    modalCreate.style.display = "none";
+  }
+}
+noDelete.onclick = function(event) {
+  modalDelete.style.display = "none";
+}
+
+yesDelete.onclick = function(event) {
+  // Delete the file and update list of list
+  listFunctions.deleteListFile(modalTargetFile)
+  setTimeout(UpdateListOfListsHtml,500)
+  modalDelete.style.display = "none";
+}
+
+// MODAL CREATE functions
+createListBtn.onclick = function(event){
+  modalCreate.style.display = "block";
+  // Select the text before the extension
+  nameNewList.focus()
+  nameNewList.setSelectionRange(0, 4);
+}
+
+closeModal[1].onclick = function() {
+  modalCreate.style.display = "none";
+}
+
+createListConfirmBtn.onclick = function(event) {
+  listFunctions.createNewList(nameNewList.value)
+  setTimeout(UpdateListOfListsHtml,500)
+  modalCreate.style.display = "none";
+}
 
 
 //************ SETTINGS Buttons *******************
@@ -158,6 +208,7 @@ ipcRenderer.on('StartingWindow', function(event, message) {
 
 //************ FUNCTIONS BEING USED *******************
 function UpdateListOfListsHtml(){
+  console.log('Update List of Lists')
   fs.readdir(settings.getFolderPath(), (err, files) => {
     removeItems()
     files.forEach(file => {

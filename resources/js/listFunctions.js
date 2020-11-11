@@ -1,4 +1,5 @@
 const fs = require('fs')
+const settings = require('./settings.js')
 
 // Adds text to list in path
 exports.addToList = (listPath, text) => {
@@ -57,6 +58,37 @@ exports.removeFromList = (listPath, text) =>{
   });
   // console.log("Final array: " + cleanDataArray)
 }
+
+// Delete selected list file
+exports.deleteListFile = (list) => {
+  const path = settings.getFolderPath()
+  const filepath = path + '\\' + list
+  fs.access(filepath, (err) => {
+    if(err){
+      alert("This file doesn't exist, cannot delete");
+    }else{
+      fs.unlink(filepath, (err2) => {
+          if (err2) {
+              alert("An error ocurred updating the file" + err.message);
+              console.log(err2);
+              return;
+          }
+          console.log("File succesfully deleted");
+      });
+    }
+  });
+}
+
+exports.createNewList = (listName) => {
+  console.log("Name of list to create: " + listName)
+  let pathList = settings.getFolderPath() + '\\' + listName
+  fs.writeFile(pathList, "", (err) => {
+        if(err){
+            alert("An error ocurred creating the file "+ err.message)
+        }
+    });
+}
+
 
 // Filter to clean array with acronyms
 function isNotEmpty(value) {

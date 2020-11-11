@@ -15,6 +15,7 @@ let contextMenu = new Menu()
 //      4. (LOW) Max acronym size to settings
 //      5. (MEDIUM) Learn More Tab
 //      6. (LOW) Redo TRY and CATCH with every and return
+//      7. (BUG) Active list after delete the active list, mismatch tray and window
 
 let tray = null
 app.whenReady().then(() => {

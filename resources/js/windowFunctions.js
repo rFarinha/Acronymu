@@ -30,6 +30,7 @@ let listItems = document.getElementById('list-item')
     noDelete = document.getElementById('noDelete')
     modalCreate = document.getElementById('modalCreate')
     createListBtn = document.getElementById('createList')
+    cancelCreateBtn = document.getElementById('cancelCreate')
     nameNewList = document.getElementById('nameNewList')
     createListConfirmBtn = document.getElementById('createListConfirmBtn')
 
@@ -65,6 +66,7 @@ function openTab(Tab) {
 // TAB SideBar listeners for click
 addToListBtn.addEventListener('click', e => {
   openTab('AddToList')
+  listTxtsSelect.value = settings.getActiveList()
 })
 listsBtn.addEventListener('click', e => {
   openTab('Lists')
@@ -118,7 +120,7 @@ closeModal[0].onclick = function() {
 }
 
 window.onclick = function(event) {
-  if (event.target == modalDelete || event.target == modalCreate ) {
+  if (event.target == modalDelete || event.target == modalCreate || event.target == cancelCreateBtn ) {
     modalDelete.style.display = "none";
     modalCreate.style.display = "none";
   }
@@ -130,6 +132,10 @@ noDelete.onclick = function(event) {
 yesDelete.onclick = function(event) {
   // Delete the file and update list of list
   listFunctions.deleteListFile(modalTargetFile)
+
+  if(modalTargetFile === settings.getActiveList()){
+    setTimeout(FindNewActiveList,200)
+  }
   setTimeout(UpdateListOfListsHtml,500)
   modalDelete.style.display = "none";
 }
@@ -139,6 +145,7 @@ createListBtn.onclick = function(event){
   modalCreate.style.display = "block";
   // Select the text before the extension
   nameNewList.focus()
+  nameNewList.value = "Name.txt"
   nameNewList.setSelectionRange(0, 4);
 }
 
@@ -166,30 +173,13 @@ clipboardRefreshRate.addEventListener('change', e => {
 folderIcon.addEventListener('click', e => {
   // Select PATH with lists
   let pathToLists = getPathFromUser()
-
-  // Read Files in PATH selected and try to find one TXT to activate
-  // UGLYYY -> try change with every
-  fs.readdir(pathToLists, (err, files) => {
-    let BreakException = {};
-    try{
-      files.forEach(file => {
-        if(file.slice(-4, file.length) === EXTENSION){
-          settings.setActiveList(file)
-          console.log('CHANGED ACTIVE LIST TO: ' + file)
-          throw BreakException;
-        }
-      })
-    }catch(e){
-      if (e !== BreakException) throw e;
-    }
-  })
-
   // Save the PATH and HTML
   settings.saveFolderPath(pathToLists)
+
+  FindNewActiveList()
+
   folderPath.innerHTML = pathToLists
   UpdateListOfListsHtml()
-  //console.log('SendingInfoToMain')
-  ipcRenderer.send('folderPath', pathToLists + ',' + settings.getActiveList())
 })
 
 
@@ -221,6 +211,8 @@ function UpdateListOfListsHtml(){
       }
     });
   });
+  pathToLists = settings.getFolderPath()
+  ipcRenderer.send('folderPath', pathToLists + ',' + settings.getActiveList())
 }
 
 
@@ -284,3 +276,16 @@ ipcRenderer.on('saveActiveList', function(event, message) {
   console.log('UPDATE LISTS')
   UpdateListOfListsHtml()
 })
+
+function FindNewActiveList(){
+  console.log('Finding new active list')
+  fs.readdir(settings.getFolderPath(), (err, files) => {
+    files.some( file => {
+      if(file.slice(-4, file.length) === EXTENSION){
+        settings.setActiveList(file)
+        console.log('CHANGED ACTIVE LIST TO: ' + file)
+        return true
+      }
+    })
+  })
+}

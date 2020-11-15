@@ -38,8 +38,6 @@ let template = [
       { label: 'Create new List',
       click() { CreateWindow('Lists') }},
       { type: 'separator' },
-      { label: 'All Lists',
-        type: 'radio' }
     ]
   },
   { type: 'separator' },
@@ -109,6 +107,7 @@ function CreateHiddenWindow(){
 ipcMain.on( "folderPath", ( event, pathAndList) => {
   console.log("Update Tray Menu...")
   let [folderPath, activeList] = pathAndList.split(',')
+  console.log(folderPath)
   UpdateTrayMenu(contextMenu, folderPath, activeList)
   console.log("Tray Menu updated")
 })
@@ -117,11 +116,25 @@ ipcMain.on( "folderPath", ( event, pathAndList) => {
 function UpdateTrayMenu(menu, folderPath, activeList){
   // Clean Tray Menu
   menu =  Menu.buildFromTemplate(template)
-  tray.setContextMenu(menu)
-
+  let menuList = menu.getMenuItemById('menu')
+  // Create All List tray button
+  if('AllLists' === activeList){
+    console.log('hello1')
+    menuList.submenu.append(new MenuItem(
+      {label:'All Lists',
+        type: 'radio',
+        checked: true,
+        click: () => ChangeActiveList(file)}))
+  }else{
+    console.log('hello2')
+    menuList.submenu.append(new MenuItem(
+      {label:'All Lists',
+      type: 'radio',
+      checked: false,
+      click: () => ChangeActiveList(file)}))
+  }
   // Add from folder all lists to Tray Menu
   fs.readdir(folderPath, (err, files) => {
-    let menuList = menu.getMenuItemById('menu')
     files.forEach(file => {
       if(file.slice(-4, file.length) === EXTENSION){
         if(file === activeList){
@@ -138,9 +151,10 @@ function UpdateTrayMenu(menu, folderPath, activeList){
         }
       }
     });
-  // lists = files
   });
+  tray.setContextMenu(menu)
 }
+
 // ChangeActiveList('hello')
 // Handle RADIO tray buttons
 function ChangeActiveList(list){

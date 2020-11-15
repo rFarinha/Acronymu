@@ -101,8 +101,7 @@ function transformTxtToArray(path, file){
 
 
 function sendInfoToMain(){
-  let folderPath = settings.getFolderPath()
-  ipcRenderer.send('folderPath', folderPath)
+  ipcRenderer.send('folderPath', settings.getFolderPath() + ',' + settings.getActiveList())
 }
 
 ipcRenderer.on('saveActiveList', function(event, message) {

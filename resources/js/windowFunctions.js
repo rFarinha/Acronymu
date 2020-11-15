@@ -212,7 +212,6 @@ ipcRenderer.on('StartingWindow', function(event, message) {
       clipboardRefreshRate.value = settings.getClipboardRefreshRate()
       folderPath.value = settings.getFolderPath()
       maxSizeInput.value = settings.getAcronymMaxSize()
-
       UpdateListOfListsHtml()
 });
 
@@ -223,6 +222,7 @@ function UpdateListOfListsHtml(){
   console.log('Update List of Lists')
   fs.readdir(settings.getFolderPath(), (err, files) => {
     removeItems()
+    addAllBtn(listItems)
     files.forEach(file => {
       if(file.slice(-4, file.length) === EXTENSION){
         let option = document.createElement("option");
@@ -237,7 +237,19 @@ function UpdateListOfListsHtml(){
   ipcRenderer.send('folderPath', pathToLists + ',' + settings.getActiveList())
 }
 
+// Add Button to list of lists to activate "All Lists"
+function addAllBtn(items){
+  let itemNode = document.createElement('div')
+  itemNode.setAttribute('class', 'item')
+  if(settings.getActiveList() === 'AllLists'){
+    itemNode.innerHTML = `<button class="list-btn active" id="AllLists">All Lists</button>`
+  }else{
+    itemNode.innerHTML = `<button class="list-btn" id="AllLists">All Lists</button>`
+  }
+  items.appendChild(itemNode)
+}
 
+// Add a button in list of lists for each txt in folder
 function addItem(item, items){
   let activeItem = settings.getActiveList()
   console.log(activeItem)

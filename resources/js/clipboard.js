@@ -8,7 +8,6 @@ const settings = require("./settings")
 const { ipcRenderer } = require('electron')
 
 //SETTINGS
-let acronymMaxSize = 10
 let intervalToReadCipboard = settings.getClipboardRefreshRate()// ms
 
 //VARAIBLES INIT
@@ -48,7 +47,7 @@ function mainLoop(){
 function readClipBoard () {
   let clipboardText = clipboard.readText()
   // Is an acronym and different?
-  if(clipboardText !== acronym && clipboardText.length < acronymMaxSize){
+  if(clipboardText !== acronym && clipboardText.length <= settings.getAcronymMaxSize()){
     acronym = clipboardText
     return acronym
   }else{

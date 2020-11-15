@@ -11,11 +11,10 @@ let lists = []
 let browserWindow = null
 let contextMenu = new Menu()
 
-// TODO 2. (LOW) Write better explanation in Add to List
-//      4. (LOW) Max acronym size to settings
-//      5. (MEDIUM) Learn More Tab
-//      6. (LOW) Redo TRY and CATCH with every and return
-//      7. (BUG) Active list after delete the active list, mismatch tray and window
+// TODO 3. CSS revamp
+//      4. Select all list
+//      7. (BUG) clear localStorage default activeList
+//      8. CHange all icons (DONE)
 
 let tray = null
 app.whenReady().then(() => {
@@ -39,6 +38,8 @@ let template = [
       { label: 'Create new List',
       click() { CreateWindow('Lists') }},
       { type: 'separator' },
+      { label: 'All Lists',
+        type: 'radio' }
     ]
   },
   { type: 'separator' },

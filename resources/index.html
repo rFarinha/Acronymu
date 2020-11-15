@@ -11,23 +11,26 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- The sidebar -->
   <div class="sidebar" style="-webkit-app-region:no-drag;">
-    <p>Acronymu</p>
-    <a class="btn active" id="AddToListBtn"><i class="fa fa-fw fa-plus-square"></i> Add to List</a>
-    <a class="btn" id="ListsBtn"><i class="fa fa-fw fa-list"></i> Lists</a>
-    <a class="btn" id="SettingsBtn"><i class="fa fa-fw fa-cog"></i> Settings</a>
-    <a class="btn" id="LearnMoreBtn"><i class="fa fa-fw fa-envelope"></i> Learn More</a>
+    <div id="logo">
+      <img src="./img/logo.png">
+    </div>
+    <a class="btn active" id="AddToListBtn"><img class="sidebarIcon" src="./img/plus-square-solid.svg"> Add to List</a>
+    <a class="btn" id="ListsBtn"><img class="sidebarIcon" src="./img/list-solid.svg"> Lists</a>
+    <a class="btn" id="SettingsBtn"><img class="sidebarIcon" src="./img/cog-solid.svg"> Settings</a>
+    <a class="btn" id="LearnMoreBtn"><img class="sidebarIcon" src="./img/envelope-solid.svg"> Learn More</a>
   </div>
 
   <main>
     <!-- TAB 1 ADD TO LIST -->
     <div class="tab" id="AddToList">
       <h2>Add to List</h2>
-      <p>Choose a List to add</p>
+      <p>Choose a List to add or remove</p>
       <select id="listTxtsSelect" style="-webkit-app-region:no-drag;"></select>
-      <p>Write each acronym in a new line seperated by a comma</p>
+      <p>To add an acronym, write each acronym in a new line seperated by a comma</p>
       <textarea id="text-area-to-add" placeholder="ACRONYM, meaning" style="-webkit-app-region:no-drag;"></textarea>
       <button class="greenBtn" id="addAcronym" style="-webkit-app-region:no-drag;">Add</button>
       <button class="redBtn" id="removeAcronym" style="-webkit-app-region:no-drag;">Remove</button>
+      <p>To remove acronyms place each acronym in a new line</p>
     </div>
 
     <!-- TAB 2 LISTS -->
@@ -55,28 +58,57 @@
       </div>
     </div>
 
-
     <!-- TAB 3 SETTINGS -->
     <div class="tab" id="Settings">
       <h2>Settings</h2>
-      <p>Notification Sound</p>
-      <!-- Rounded switch-->
-      <label class="switch" style="-webkit-app-region:no-drag;">
-        <input id="sound-switch" type="checkbox">
-        <span class="slider round"></span>
-      </label>
+      <!-- Sound ON/OFF Setting-->
+      <div style="width: 100%; display: table;">
+        <div style="display: table-row">
+          <div style="width: 150px; display: table-cell;">
+            <p>Notification Sound</p>
+          </div>
+          <div style="display: table-cell;">
+            <label class="switch" style="-webkit-app-region:no-drag;">
+              <input id="sound-switch" type="checkbox">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <!-- Clipboard refresh rate Setting-->
       <p>Check Clipboard every (ms)</p>
-      <input id="clipboardRefreshRate" type="number" min="100" max="10000" style="-webkit-app-region:no-drag;">
+      <input class="inputNumber" id="clipboardRefreshRate" type="number" min="100" max="10000" style="-webkit-app-region:no-drag;">
+      <!-- Max acronym size Setting-->
+      <p>Max acronym size</p>
+      <input class="inputNumber" id="maxSize" type="number" min="1" max="100" style="-webkit-app-region:no-drag;">
+      <!-- Path to folder-->
       <p>Path to folder with lists with acronyms</p>
-      <p id="pathToAcronyms" type="text" style="-webkit-app-region:no-drag;"></p>
-      <p id="folderPath"></p><input id="folderIcon" type="image" src="./img/folder-open-regular.svg" style="-webkit-app-region:no-drag;">
-
+      <div style="width: 100%; display: table;">
+        <div style="display: table-row">
+          <div style="width: 170px; display: table-cell;">
+            <input id="folderPath" readonly="readonly" style="-webkit-app-region:no-drag;">
+          </div>
+          <div style="display: table-cell;">
+            <input id="folderIcon" class="icon" type="image" src="./img/folder-open-regular.svg" style="-webkit-app-region:no-drag;">
+          </div>
+        </div>
+      </div>
     </div>
 
 
     <!-- TAB 4 LEARN MORE -->
     <div class="tab" id="LearnMore">
-      <h2>Learn More</h2>
+      <div class="centerText">
+        <h2>Learn More</h2>
+        <p>Version 0.1 Beta<p>
+        <br>
+        <p>Created by:</p>
+        <p> Ricardo Farinha</p>
+        <p> João Ribas</p>
+        <br>
+        <p>To find more:</p>
+        <a href="https://github.com/rFarinha/Acronymu"  style="-webkit-app-region:no-drag;">Visit github.com/rFarinha/Acronymu</a>
+      </div>
     </div>
   </main>
 

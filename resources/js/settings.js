@@ -1,16 +1,21 @@
+//const fs = require('fs');
+//const EXTENSION = '.txt'
+
 // DEFAULTS values for first time startup
 let soundState_default = true;
 let clipboardRefreshRate_default = 1000 // seconds
-let listPath_default = 'C:\\Users\\rafarinha\\Projects\\Acronymu\\Acronymu\\resources' // seconds
+let listPath_default = 'C:\\Users\\Farinha\\Projects\\Acronymu\\resources'
+let acronymMaxSize_default = 10 // seconds
 
 //********** FOLDER PATH ***************
-exports.saveFolderPath = (path) => {
+let saveFolderPath = exports.saveFolderPath = (path) => {
   localStorage.setItem('listFolder',path)
 }
 
 exports.getFolderPath = () => {
   let folderPath = localStorage.getItem('listFolder')
   if(folderPath === null){
+    saveFolderPath(listPath_default)
     return listPath_default
   }
   return folderPath
@@ -18,12 +23,17 @@ exports.getFolderPath = () => {
 
 
 //********** ACTIVE LIST ***************
-exports.setActiveList = (list) => {
+let setActiveList = exports.setActiveList = (list) => {
   localStorage.setItem('activeList', list)
 }
 
 exports.getActiveList = (list) => {
-  return localStorage.getItem('activeList')
+  let activeList = localStorage.getItem('activeList')
+  /*if(activeList === null){
+    FindNewActiveList()
+    let activeList = localStorage.getItem('activeList')
+  }*/
+  return activeList
 }
 
 
@@ -58,3 +68,34 @@ exports.getSoundState = () => {
   }
   return soundState.toString() === 'true';
 }
+
+//********** MAX ACRONYM SIZE ***************
+let setAcronymMaxSize = exports.setAcronymMaxSize = (maxSize) => {
+  localStorage.setItem('MaxSize', maxSize)
+}
+
+exports.getAcronymMaxSize = () => {
+  let maxSize = localStorage.getItem('MaxSize')
+  if(maxSize === null){
+    maxSize = acronymMaxSize_default
+    setAcronymMaxSize(maxSize)
+  }
+  return maxSize
+}
+
+//*********** CLEAR SETTINGS ******************
+exports.clearLocalStorage = () => {
+  localStorage.clear();
+}
+
+//*********** TRY TO FIND a LIST *****************
+/*function FindNewActiveList(){
+  fs.readdir(listPath_default, (err, files) => {
+    files.some( file => {
+      if(file.slice(-4, file.length) === EXTENSION){
+        setActiveList(file)
+        return true
+      }
+    })
+  })
+}*/

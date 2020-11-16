@@ -11,7 +11,10 @@ let lists = []
 let browserWindow = null
 let contextMenu = new Menu()
 
-// TODO 3. CSS revamp
+// TODO 1. Create X button to close window
+//      2. Learn more link to open shelll
+//      3. CSS revamp
+//      4. Create setup
 
 let tray = null
 app.whenReady().then(() => {

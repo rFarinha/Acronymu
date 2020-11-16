@@ -145,7 +145,7 @@ yesDelete.onclick = function(event) {
   listFunctions.deleteListFile(modalTargetFile)
 
   if(modalTargetFile === settings.getActiveList()){
-    setTimeout(FindNewActiveList,200)
+    setTimeout(ActiveAllLists,200)
   }
   setTimeout(UpdateListOfListsHtml,500)
   modalDelete.style.display = "none";
@@ -189,7 +189,7 @@ folderIcon.addEventListener('click', e => {
     // Save the PATH and HTML
     settings.saveFolderPath(pathToLists)
 
-    FindNewActiveList()
+    ActiveAllLists()
 
     folderPath.value = pathToLists
     UpdateListOfListsHtml()
@@ -309,15 +309,6 @@ ipcRenderer.on('saveActiveList', function(event, message) {
   UpdateListOfListsHtml()
 })
 
-function FindNewActiveList(){
-  console.log('Finding new active list')
-  fs.readdir(settings.getFolderPath(), (err, files) => {
-    files.some( file => {
-      if(file.slice(-4, file.length) === EXTENSION){
-        settings.setActiveList(file)
-        console.log('CHANGED ACTIVE LIST TO: ' + file)
-        return true
-      }
-    })
-  })
+function ActiveAllLists(){
+  settings.setActiveList('AllLists')
 }

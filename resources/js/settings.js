@@ -6,6 +6,7 @@ let soundState_default = true;
 let clipboardRefreshRate_default = 1000 // seconds
 let listPath_default = 'C:\\Users\\Farinha\\Projects\\Acronymu\\resources'
 let acronymMaxSize_default = 10 // seconds
+let activeList_default = 'AllLists'
 
 //********** FOLDER PATH ***************
 let saveFolderPath = exports.saveFolderPath = (path) => {
@@ -29,10 +30,10 @@ let setActiveList = exports.setActiveList = (list) => {
 
 exports.getActiveList = (list) => {
   let activeList = localStorage.getItem('activeList')
-  /*if(activeList === null){
-    FindNewActiveList()
-    let activeList = localStorage.getItem('activeList')
-  }*/
+  if(activeList === null){
+    activeList = activeList_default
+    localStorage.setItem('activeList', activeList)
+  }
   return activeList
 }
 
@@ -87,15 +88,3 @@ exports.getAcronymMaxSize = () => {
 exports.clearLocalStorage = () => {
   localStorage.clear();
 }
-
-//*********** TRY TO FIND a LIST *****************
-/*function FindNewActiveList(){
-  fs.readdir(listPath_default, (err, files) => {
-    files.some( file => {
-      if(file.slice(-4, file.length) === EXTENSION){
-        setActiveList(file)
-        return true
-      }
-    })
-  })
-}*/

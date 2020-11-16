@@ -9,7 +9,7 @@ const { ipcRenderer } = require('electron')
 
 //SETTINGS
 let intervalToReadCipboard = settings.getClipboardRefreshRate()// ms
-
+const EXTENSION = '.txt'
 //VARAIBLES INIT
 let acronym = ''
 let sigla = ''
@@ -76,11 +76,13 @@ function searchList(acronymToSearch, array){
   let title = '';
   let body = '';
 
+  let i = 1 // each meaning found
   array.forEach(line  => {
     let [acronymInList, meaning] = line.split(',');
     if(acronymInList === acronymToSearch){
       title = acronymInList;
-      body = meaning;
+      body = body + i + '. ' + meaning + '\n';
+      i++
     }
   });
 
@@ -97,13 +99,23 @@ function newListIsSelected(){
 
 module.exports = { newListIsSelected };
 
+// Array with all lists together
 function AllListsToArray(){
+  acronymArray = []
+  fs.readdir(settings.getFolderPath(), (err, files) => {
+    files.forEach(file => {
+      if(file.slice(-4, file.length) === EXTENSION){
+        arrayTemp = transformTxtToArray(settings.getFolderPath(), file)
+        acronymArray = acronymArray.concat(arrayTemp)
+      }
+    })
+  })
 
 }
 
 // Transform txt with acronyms into array
 function transformTxtToArray(path, file){
-  console.log('New Array created...')
+  console.log('New Array created...' + path + '\\' + file)
   var data = fs.readFileSync(path + '\\' +  file);
   return data.toString().split("\n");
 }

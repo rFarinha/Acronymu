@@ -12,9 +12,6 @@ let browserWindow = null
 let contextMenu = new Menu()
 
 // TODO 3. CSS revamp
-//      4. Select all list
-//      7. (BUG) clear localStorage default activeList
-//      8. CHange all icons (DONE)
 
 let tray = null
 app.whenReady().then(() => {

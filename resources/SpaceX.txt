@@ -1,0 +1,143 @@
+ACES, Advanced Cryogenic Evolved Stage - A LOX/LH2 upper stage being developed for ULA's Vulcan launch vehicle.
+ACS, Attitude Control System – Synonymous with Reaction Control System. See Reaction Control System.
+AOS, Acquisition of Signal – A phrase used during launch when communication with the vehicle is established to a ground station.
+ARM, Asteroid Redirect Mission - A planned NASA mission to redirect an asteroid to lunar orbit for rendezvous with an Orion spacecraft.
+ASDS, Autonomous Spaceport Drone Ship – SpaceX's custom-built landing ship.
+ASOG, A Shortfall of Gravitas - Name of an upcoming ASDS.
+AVI, Avionics Operator
+BEAM, Bigelow Expandable Activities Module – An inflatable module designed by Bigelow Aerospace that was brought up to the ISS aboard CRS-8.
+BEO, Beyond Earth Orbit – any location or orbit outside of the Earth's gravitational influence
+BFR, Big Falcon Rocket – Former codename of Starship, SpaceX's next-generation fully-reusable launch vehicle and interplanetary spacecraft.
+BO, Blue Origin – Spaceflight and rocket company funded by Jeff Bezos, founder and CEO of Amazon. See Competitors.
+C3, Characteristic Energy – A measure of escape velocity (<1: no escape, =1: escape with no further velocity, >1: escape with increasing velocity).
+CAA, Crew Access Arm - Arm that swings out from the FSS (Fixed Service Structure) to give crew access to Dragon while on the pad.
+CBM, Common Berthing Mechanism – A device used to attach Cargo Dragon and other cargo spacecraft to the ISS.
+CC, Communications Coordinator
+CCAFS, Cape Canaveral Air Force Station, east Florida coast.
+CCDev, Commercial Crew Development – See FAQ/NASA.
+CCiCap, Commercial Crew Integrated Capability – See FAQ/NASA.
+CCtCap, Commercial Crew Transportation Capability – See FAQ/NASA.
+CE, Chief Engineer
+CH4, Methane – a simple hydrocarbon used as a cryogenic fuel
+COPV, Composite Overwrapped Pressure Vessel – A pressure tank constructed from a thin, non-structural liner wrapped with structural fiber composite.
+COTS, Commercial Orbital Transportation Services – See FAQ/NASA.
+CRS, Commercial Resupply Services – A contract that SpaceX and Orbital ATK both have with NASA to resupply the International Space Station. See FAQ/NASA.
+DC, Dragon Controller
+DPL, Downrange Propulsive Landing (on an ocean barge/ASDS)
+DRO, Distant Retrograde Orbit - a highly stable lunar orbit, proposed as the destination for the ARM asteroid
+Delta-v, Change in velocity – Used to measure the fuel expenditure of maneuvers, and the capacity of a rocket to execute said maneuvers.
+EAR, Export Administration Regulations – A US law that regulates the export of technology with "dual-use" applications (both commercial and military).
+EDL, Entry, Descent and Landing – The series of controlled maneuvers and pathways used to land an orbiting spacecraft.
+Engines
+F1, Falcon 1
+F9, Falcon 9
+FH, Falcon Heavy
+FPIP, Flight Planning Integration Panel
+FRC, Falcon Recovery Coordinator
+FRR, Flight Readiness Review
+FRR, Flight Readiness Review – A paperwork exercise used to ensure that a rocket is ready to fly.
+FS, Flight Software
+FSPO, Flight Safety Project Officer
+FSS, Fixed Service Structure – A structure on the pad at Launch Complex 39A, Cape Canaveral.
+FT, Full Thrust (Falcon 9 v1.2)
+FTS, Flight Termination System
+GC, Ground Control
+GEO, Geostationary Orbit – a circular geocentric orbit along the equator at 35,786 km altitude, with an orbital period of exactly one day
+GNC, Guidance, Navigation and Control (also GN&C, or G&C)
+GNC, Guidance, Navigation, & Control
+GS, Ground Station
+GSE, Ground Support Equipment – Any ground-based equipment used to enable a launch to occur.
+GTO, Geostationary Transfer Orbit – a highly elliptical geocentric orbit with perigee in LEO and apogee at or above GEO
+HEO, High Earth Orbit – a geocentric orbit with an altitude above 35,786 km
+HIF, Horizontal Integration Facility – facilities where SpaceX F9 and FH vehicles and their payloads are integrated horizontally (sideways instead of vertical). HIFs are built adjacent to the sites of SpaceX launch sites.
+IAC, International Astronautical Congress – An annual conference held to discuss matters of relevance to the aerospace industry.
+IIP, Instantaneous Impact Point – Refers to the point a rocket would land at if all propulsion was terminated at that moment.
+IMMT, ISS Mission Management Team
+ISRU, In-situ Resource Utilization – Refers to the mining and processing of the regolith/atmosphere of Mars, Moon, etc, for use as fuel, propellant, or other consumables.
+ISS, International Space Station – An internationally run habitable artificial satellite, in low Earth orbit.
+ITAR, International Traffic in Arms Regulations – A US law that regulates the export and import of military technology (including rockets).
+ITS, Interplanetary Transport System – Planned SpaceX interplanetary cargo and crew transport, made of carbon composites. Later evolved into (stainless steel) Starship.
+Isp, Specific Impulse – A measure of the "fuel efficiency" of a rocket engine.
+JRTI, Just Read The Instructions (Marmac 303) – A moniker given to SpaceX's Pacific ASDS. See Vessels.
+JWST, James Webb Space Telescope – A NASA space observatory under construction and scheduled to launch in the 2020s.
+KSC, Kennedy Space Center – A NASA-run orbital launch center at Cape Canaveral, Florida.
+L1, Lagrange Point 1 – Usually used in reference to Earth-Sun L1, this is a region of space in which it is possible to "hover" in between the Earth and the Sun.
+L2, Also, Lagrange Point 2.
+L2, Paywalled section of NASA Spaceflight. See NASA Spaceflight.
+LAS/LES, Launch Abort or Launch Escape System - The system that evacuates a capsule from a malfunctioning rocket.
+LC-13, Launch Complex 13, Cape Canaveral. See LZ-1 and LZ-2.
+LC-39A, Launch Complex 39A, Cape Canaveral – Former launch site of Saturn V (Apollo) and Space Shuttle, currently leased to SpaceX.
+LD, Launch Director
+LDA, Launch Decision Authority
+LEO, Low Earth Orbit – a geocentric orbit with an altitude under 2,000 km
+LH2, Liquid Hydrogen (H2) – a very chemically simple cryogenic fuel
+LNG, Liquid Natural Gas – a cryogenic mixture of simple hydrocarbons, usually 80-99% methane
+LOI, Lunar Orbit Insertion – a maneuver performed during Lunar fly-by which forces a spacecraft into Lunar orbit
+LOM, Loss of Mission – The mission failing irrecoverably, often due to the the launch vehicle failing/exploding.
+LOS, Loss of Signal – A phrase used during launch when communication with the vehicle is lost with a ground station, usually due to the spacecraft passing out of view of that particular ground station.
+LOV, Loss of Vehicle – Mission failure due to launch vehicle failure.
+LOX, Liquid Oxygen – a commonly used cryogenic oxidiser (used in Falcon)
+LRR, Launch (vehicle) Readiness Review
+LZ-1, SpaceX landing zone 1 built on the site of Launch Complex 13, Cape Canaveral. Ground-pad landing site for launches from SLC-40 & LC-39A.
+LZ-2, SpaceX landing zone 2 built on the site of Launch Complex 13, Cape Canaveral. Ground-pad landing site for launches from SLC-40 & LC-39A.
+M1A, Original version of Merlin 1 rocket motor – 340kN – 1st flown 2006
+M1B, Version B of Merlin 1 – 360kN – never flown
+M1C, Version C of Merlin 1 rocket motor – 556-660kN – 1st flown 2008
+M1D, Version D of Merlin 1 rocket motor – 620-690kN – 1st flown 2013
+M1DVac, Version D of Merlin 1 rocket motor – Optimized for vacuum – 934 kN – 1st flown 2013
+MA, Mission Assurance – An engineering process used to increase the chance of mission success.
+MARS, Mid Atlantic Regional Spaceport – Launch site of Orbital ATK's Minotaur and Antares rockets.
+MCT, Mars Colonial Transporter – A vehicle planned by SpaceX to transport humans to and from Mars. Renamed to Starship.
+MECO, Main Engine Cutoff – During launch, the ending of the first stage engine burn.
+MEO, Medium Earth Orbit – a geocentric orbit with an altitude between 2,000 km and 35,786 km
+MM, Mission Manager
+MMH, Monomethyl Hydrazine – a highly toxic fuel that is liquid under standard conditions (used in Dragon)
+MOI, Mars Orbit Insertion – a maneuver performed during Mars fly-by which forces a spacecraft into an aerocentric orbit
+N2O4, Dinitrogen Tetroxide, aka DNTO – a highly toxic oxidiser that is liquid under standard conditions (used in Dragon)
+NDA, Non-Disclosure Agreement – A legal contract signed by employees, wherein they agree not to leak sensitive information outside their workplace.
+NDS, NASA Docking System – A device used to attach the crew Dragon to the ISS.
+NEO, Near Earth Orbit - Usually used to denote an Earth-crossing asteroid.
+NET, No Earlier Than
+NSF, NASA Spaceflight/NASA Spaceflight Forum.
+OCISLY, Of Course I Still Love You (Marmac 304) – SpaceX's Atlantic ASDS barge. See Vessels.
+OD, Orbital Director (?)
+OSM, Operations Safety Manager
+PICA-X, Phenolic Impregnated Carbon Ablator-X – The material used for the heat shields of the Dragon capsules.
+PIF, Payload Integration Facility
+PMA, Pressurized Mating Adapter – A device used on the ISS to convert a CBM port to an NDS port.
+PMF, Propellant Mass Fraction, ratio of a rocket's total mass at launch to the mass of all propellants onboard. Typically around 0.95 for rockets.
+Prop, Propulsion
+RC, Range Coordinator
+RCO, Range Control Officer
+RCS, Reaction Control System, a set of small thrusters that fire to rotate spacecraft and perform small maneuvers. Synonymous with Attitude Control System.
+ROC, Range Operations Coordinator
+RP-1, Rocket Propellant-1, aka kerosene – a complex hydrocarbon used as a combustible fuel (used in Falcon)
+RSS, Rotating Service Structure – A structure on the pad at Launch Complex 39A, Cape Canaveral.
+RTLS, Return To Launch Site – when a rocket stage returns to and lands on a pad near the launch site. Used by certain SpaceX Falcon 9 mission profiles.
+RUD, Rapid Unplanned/Unscheduled Disassembly – euphemism for catastrophic failure.
+Recovery, Landing and Recovery
+SE, Systems Engineer (?)
+SECO, Second (Stage) Engine Cutoff – During launch, the ending of the second stage engine burn.
+SEP, Solar Electric Propulsion (solar panels plus ion thrusters) Used on SpaceX's Starlink satellites and various other spacecraft, including deep-space probes.
+SF, Static Fire – A short test prior to launch where the engines are fired for a few seconds.
+SFN, Spaceflight Now – A website specializing in spaceflight news.
+SLC-40, Space Launch Complex 40, Cape Canaveral.
+SLC-4E, Space Launch Complex 4 East, Vandenberg.
+SLC-4W, Space Launch Complex 4 West, Vandenberg – SpaceX's chosen landing location for launches from SLC-4E.
+SO, suborbital – a flight trajectory with enough kinetic energy to reach space, but not enough energy to reach orbit
+SPIF, Spacecraft Processing and Integration Facility
+SSME, Space Shuttle Main Engine, a.k.a. Aerojet Rocketdyne RS-25.
+SSTO, Single Stage To Orbit, a hypothesized vehicle class that does not use multiple stages to reach orbit.
+T/E, Transporter/Erector – The structure that takes Falcon from a horizontal to vertical position, and holds the rocket in place on the pad.
+TEL, Transporter Erector Launcher – T/E equivalent, the structure that takes Falcon from a horizontal to vertical position, and holds the rocket in place on the pad.
+TLI, Trans-Lunar Injection – a maneuver performed in geocentric orbit which puts an object on a trajectory towards the moon
+TMI, Trans-Mars Injection – a maneuver performed in geocentric orbit which puts an object on a Mars-intercepting heliocentric orbit
+TRL, Technology Readiness Level – NASA's method of estimating technology maturity (1 = basic principles observed, 9 = in active service).
+TVC, Thrust Vector Control
+ULA, United Launch Alliance, joint venture of Boeing and Lockheed Martin, operates the Atlas V and Delta IV vehicles. See Competitors.
+VAB, Vehicle Assembly Building at Kennedy Space Center.
+VAFB, Vandenberg Air Force Base, California – The site of a SpaceX launch pad that is used for polar and retrograde-LEO flights.
+VC, Vehicle Control
+VV, Visiting Vehicle – A term for any vehicle that visits the ISS.
+WDR, Wet Dress Rehearsal – A procedure that involves the loading of propellants, and countdown to launch but without any actual firing of engines, so as to check out systems prior to the actual launch day.
+Δv, Change in velocity – Used to measure the fuel expenditure of maneuvers, and the capacity of a rocket to execute said maneuvers.

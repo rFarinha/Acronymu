@@ -130,4 +130,5 @@ ipcRenderer.on('saveActiveList', function(event, message) {
   console.log(message)
   settings.setActiveList(message)
   newListIsSelected()
+  sendInfoToMain()
 })

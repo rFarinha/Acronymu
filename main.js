@@ -66,7 +66,7 @@ function CreateWindow(page){
     browserWindow.loadFile('./resources/index.html')
 
     // Open DevTools - Remove for PRODUCTION!
-    browserWindow.webContents.openDevTools();
+    //browserWindow.webContents.openDevTools();
 
     // Listen for window being closed
     browserWindow.on('closed',  () => {
@@ -85,7 +85,7 @@ function CreateWindow(page){
 function CreateHiddenWindow(){
   optionsWindow = new BrowserWindow({
     height: 500, width: 500,
-    show: true, // true for debugging
+    show: false, // true for debugging
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
@@ -95,7 +95,7 @@ function CreateHiddenWindow(){
   console.log('Hidden window created...')
 
   // Open DevTools - Remove for PRODUCTION!
-  optionsWindow.webContents.openDevTools();
+  //optionsWindow.webContents.openDevTools();
 }
 
 
@@ -121,14 +121,14 @@ function UpdateTrayMenu(menu, folderPath, activeList){
       {label:'All Lists',
         type: 'radio',
         checked: true,
-        click: () => ChangeActiveList(file)}))
+        click: () => ChangeActiveList('AllLists')}))
   }else{
     console.log('hello2')
     menuList.submenu.append(new MenuItem(
       {label:'All Lists',
       type: 'radio',
       checked: false,
-      click: () => ChangeActiveList(file)}))
+      click: () => ChangeActiveList('AllLists')}))
   }
   // Add from folder all lists to Tray Menu
   fs.readdir(folderPath, (err, files) => {

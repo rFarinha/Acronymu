@@ -1,5 +1,0 @@
-A,CC
-B,Basd
-CS, Counter Strike
-LOL, League of Legends
-asd, asdasd

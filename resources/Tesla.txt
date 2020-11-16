@@ -1,0 +1,208 @@
+AC,Air Conditioning (HVAC is the preferred acronym)
+AC,Alternating Current
+ACC,Adaptive Cruise Control
+AP,AutoPilot (software option in cars after 28-Feb-2019)
+AP1,Autopilot 1 (software and hardware prior to AP2)
+AP2,Autopilot 2 (software and hardware after AP1)
+APP,AutoPilot (Tesla Internal)
+AWD,All-Wheel Drive
+Ah,Amperage for an hour at a specific voltage
+Amps,Amperage/Current
+Ant,Antenna
+BCM,Body Control Module
+BEV,Battery Electric Vehicle
+BMB,Battery Management Board
+BMS,Battery Management System
+CAFE,Corporate Average Fuel Economy
+CAN,Controller Area Network (a data bus within a vehicle)
+CARB,California Air Resources Board
+CC,Cruise Control
+CCC,"Courage, Clarity, and Confidence (opposite of FUD)"
+CD,"Coefficient of Drag, and occasionally the Center Display (MCU)"
+CH,Cup Holder
+CHAdeMO,"CHArge de MOve, a trade name of a DC charger standard"
+CID,Center Instrument Display
+CMP,Compressor
+CO2,Carbon Dioxide Gas
+CP,Charge Port
+CPU,Central Processing Unit
+CTM,Come To Me (Smart Summon feature)
+D,Dual Motor (AWD)
+DA,Driver Assistance
+DAS,Driver Assistance System (i.e. Autopilot)
+DC,Direct Current
+DES,Delivery Experience Specialist – A Tesla employee who reviews the car’s operation with a new owner
+DI,Drive Inverter
+DM,"Dog Mode, where the climate control stays on when the car is locked"
+DRL,Daytime Running Lights
+DS,Delivery Specialist
+EAP,"Enhanced Autopilot, discontinued for new orders after 28-Feb-2019; Rarer, EAP = Early Access Program"
+ECU,Electronic Control Unit
+EM,Elon Musk
+EPA,Environmental Protection Agency
+EPAS,Electrically Powered Assisted Steering
+EPB,Electric Parking Brake
+EPBL,Electric Parking Brake Left
+EPBR,Electric Parking Brake Right
+ESA,"Extended Service Agreement – Similar to an extended warranty, it provides parts/labor coverage beyond the first 4 years/50K miles"
+ESP,Electronic Stability Program (sometimes called ASC – Active Stability Control)
+EU,European Union
+EV,Electric Vehicle
+EVSE,Electric Vehicle Supply Equipment – A unit between the AC supply and an EV for charging
+FBOTD,First Bump Of The Day (A comment in the forum to bump a topic back to the top of the page)
+FC,Fast Charge (i.e DC charging via Supercharger)
+FD,Falcon Doors (Model X)
+FOB,Electronic Key (not really an acronym)
+FSD,Full-Self Driving
+FUD,"Fear, Uncertainty, and Doubt – often evoked intentionally in order to confuse."
+FWD,Front-Wheel Drive; often also used for Falcon Wing Doors on Model X
+GF,GigaFactory (for battery production)
+GPS,Global Positioning System
+GPU,Graphics Processing Unit
+GTW,Gateway
+HPC,High Power Charger (for Roadster)
+HPWC,"High Power Wall Connector, now just called Wall Connector"
+HQ,Headquarters (as in Tesla’s HQ)
+HSPA+,Evolved High-Speed Packet Access (for wireless broadband)
+HV,High Voltage
+HVAC,"Heating, Ventilation and Air Conditioning"
+HVB,High Voltage Battery
+HVP,High Voltage Protect
+HW1,Hardware 1 (referring to Autopilot S/X hardware prior to HW2)
+HW2,Hardware 2 (referring to Autopilot S/X hardware after Oct-2016)
+HW2.5,Hardware 2.5 (referring to Autopilot S/X/3 hardware after ~Jul-2017)
+HW3.0,Hardware 3.0 (referring to Autopilot S/X/3 hardware released in April 2019 on new cars with a retrofit planned on older AP2 cars)
+IBST,iBoost electromechanical brake booster system by Bosch
+IC,Instrument Cluster (display module and electronics)
+ICE,Internal Combustion Engine
+ICEd,When an ICE vehicle is parked in an EV charging stall
+IEC,International Electrotechnical Commission (for European plugs)
+IIHS,Insurance Institute for Highway Safety (for safety ratings)
+IMHO,In My Humble Opinion (often used in forums)
+IMU,"Inertial Measurement Unit – used to help maintain  location info when GPS is lost (i.e. tunnels, etc.)"
+J/K,Just Kidding (humor)
+J1772,AC power charging connection standard by SAE
+JIT,"Just-In-Time delivery, an inventory control system"
+LCD,Liquid Crystal Display
+LDW,Lane Departure Warning
+LED,Light Emitting Diode
+LHD,Left-Hand Drive
+LIN,Local Interconnect Network
+LR,"Long Range (Applies to M3, S, and X)"
+LTE,Long-Term Evolution (referred to as 4G data)
+M3,Model 3 (but also commonly used for BMW’s M3 model)
+MC,"Mobile Connector, previously called Universal Mobile Connector (UMC)"
+MCU,Media Control Unit (17?/15? center screen unit)
+MCU1,"Media Control Unit, Version 1 (S/X until March 2018)"
+MCU2,"Media Control Unit, Version 2 (all 3, and S/X starting in March 2018)"
+MR,"Medium Range (Model 3, now discontinued)"
+MS,Model S
+MX,Model X
+MY,Model Y – The SUV version of the Model 3
+Model ?,"Model 3 (used unofficially by forum members, no longer used)"
+NADA,National Automobile Dealers Association
+NEC,National Electrical Code – A common US standard for building wiring and electrical work
+NEDRA,National Electric Drag Racing Association
+NEMA 14-50,"NEMA 50 amp AC power connection (for charging at 240 VAC, 40 amps)"
+NEMA,National Electrical Manufacturers Association (for plugs)
+NHTSA,National Highway Traffic Safety Administration (for safety ratings)
+NN,Neural Net (relating to part of the AutoPilot software)
+OA,"Owner Advisor, Tesla employee"
+OCS,Occupant Classification System – used to detect the weight of persons in front seats for airbag deployment
+ODIN,Diagnostics IN service
+OEM,Original Equipment Manufacturer
+OMC,Owner’s Manual Companion
+OTA,Over-The-Air – usually in reference to software updates via wireless links
+P,"Performance, as a prefix to the model name"
+P100D,"Performance Model S with 100 kWh battery and AWD/Dual motors, now called “Performance Long Range” in 2019"
+P3,Performance Model 3 with 75 kWh battery
+P3D+,"Performance Model 3 Plus Dual Motor with 75 kWh battery.  Currently, the P3D has the plus features and the “+” is no longer used."
+P3D,Performance Model 3 Dual Motor with 75 kWh battery
+P3D-,"Performance Model 3 Dual Motor with 75 kWh battery, without Plus features (not an official designation)"
+P85+,"Performance Plus Model S with 85 kWh battery, now discontinued"
+P85,"Performance Model S with 85 kWh battery, now discontinued"
+P85D,"Performance Model S with 85 kWh battery and AWD/Dual motors, now discontinued"
+P90D,"Performance Model S with 90 kWh battery and AWD/Dual motors, now discontinued"
+PCS,Power Conversion System (i.e. charger)
+PHEV,Plug-in Hybrid Electric Vehicle (ICE/EV combo)
+PM,Pedal Monitor (supervision of the pedal operation)
+PPU,"Pay Per Use, for charging either at Superchargers or other public chargers"
+PS,Product Specialist – Tesla employee at galleries and stores
+PT,Pickup Truck
+RADC,Radar Center
+RC,Remote Control
+RCM,Restraint Control Module to control the airbags
+RHD,"Right-Hand Drive (for Australia, England, Japan, etc.)"
+RKE,Remote Keyless Entry
+RLSH,Rain/Light/Solar/Humidity sensor (pre-HW2 vehicles)
+RPM,Revolutions Per Minute
+RR,Rated Range (instead of Ideal mode)
+RTFM,Read the Fu.king Manual – For those who refuse to read the manual where items are clearly stated in the manual.
+RWD,Rear Wheel Drive
+S100D,"Model S with 100 kWh battery and AWD/Dual motors, renamed as “Long Range Model S/X” in 2019"
+S40,"Model S with 60 kWh battery, software limited to 40 kWh, now discontinued"
+S60,"Model S with 60 kWh battery, discontinued, but revived June-2016, and discontinued again in March 2016"
+S60D,"Model S with 60 kWh battery and AWD/Dual motors, discontinued in March 2016"
+S70,"Model S with 70 kWh battery, discontinued in June 2016"
+S70D,"Model S with 70 kWh battery and AWD/Dual motors, discontinued in June 2016"
+S75,"Model S with 75 kWh battery, discontinued in September 2017"
+S75D,"Model S with 75 kWh battery and AWD/Dual motors, now discontinued"
+S85,"Model S with 85 kWh battery, now discontinued"
+S85D,"Model S with 85 kWh battery and AWD/Dual motors, now discontinued"
+S90D,"Model S with 90 kWh battery and AWD/Dual motors, now discontinued"
+SA,Service Advisor – Tesla employee contact for service
+SAE Combo,Combo AC/DC charging standard by SAE
+SAE,Society of Automotive Engineers
+SC,"Service Center (sometimes, use TSC as a better acronym)"
+SC,SuperCharger (usually)
+SCCM,Steering wheel Column Control Module
+SOC,State of Charge
+SR+,"Standard Range Plus – Model 3, 240 miles range"
+SR,"Standard Range – Model 3, 220 miles range"
+SRB,Standard Range Battery – Model 3
+SWP,Subzero Weather Package
+Semi,Semi Truck introduced by Tesla in November 2017
+Soon,Commonly issued by Tesla to state a timing from months to years
+SvC,Service Center (to avoid confusion with SuperChargers)
+TACC,Traffic-Aware Cruise Control
+TAS,Tesla Air Suspension
+TEA Score,"Troll Evaluation Alarm – indicates the likelihood of a troll providing fake news or fake information (i.e. 100% = All BS/Fake news; 50% = uncertain if true or not, 0% = not a troll)."
+TM,"Tesla Motors (not often used, as TM is confused with Trademark and Toyota’s stock symbol. Tesla Motors, Inc. name has been officially changed to Tesla Inc.)"
+TMC,Tesla Motors Club
+TMI,"Tesla Motors Inc.  (old name, now Tesla, Inc.)"
+TPMS,Tire Pressure Monitoring System
+TSC,Tesla Service Center
+TSLA,Tesla’s Stock Symbol
+TT,TeslaTap
+UDS,Universal Diagnostics System (Tesla Internal)
+UHFS,Ultra-High Fidelity Sound (now called Premium Sound)
+UI,User Interface
+UMC,"Universal Mobile Charger, now called Mobile Connector (MC)"
+USB,Universal Serial Bus (Connector for flash drives)
+V,"Volts, an electrical potential"
+VCFRONT,"Vehicle Controller Front on Model 3, front lights, HVAC, sensors, etc."
+VCLEFT,"Vehicle Controller Left on Model 3, steering column, left seat, left windows, left mirror, locks, etc."
+VCRIGHT,"Vehicle Controller Right on Model 3, right seat, right windows, right mirror, etc."
+VCSEC,"Vehicle Controller Secondary on Model 3, security, alarm, charge port, trunk, frunk, etc."
+VIN,Vehicle Identification Number (see our VIN decoder)
+W,"Watts, a unit of power"
+WC,Wall Connector – previously known as HPWC
+WTF,What The Fu.k- an expression of disbelief
+Wh,"Watt-hour, a measure of electrical energy equivalent to the power consumption of one watt for one hour."
+WiFi,Wireless local area network
+X,Model X
+X100D,Model X with 100 kWh battery and AWD/Dual motors
+X60D,"Model X with 60 kWh battery and AWD/Dual motors, now discontinued"
+X75D,"Model X with 75 kWh battery and AWD/Dual motors, now discontinued"
+X90D,"Model X with 90 kWh battery and AWD/Dual motors, now discontinued"
+XP100D,"Performance Model X with 100 kWh battery and AWD/Dual motors, now called “Performance Long Range” in 2019"
+XP90D,"Performance Model X with 90 kWh battery and AWD/Dual motors, now discontinued"
+Y,"Model Y SUV, expected in late 2020"
+YFFC,"Yacht Floor Front Console, now discontinued"
+YMMV,Your Mileage May Vary
+ZEV,Zero Emission Vehicle
+eMMC,embedded Multi Media Card (Flash memory)
+hp,Horse Power
+kW,"Kilowatt (1000 watts, a unit of electric power)"
+kWh,A kilowatt of electric power in an hour
+mi,miles

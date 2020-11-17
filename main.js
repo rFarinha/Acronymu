@@ -11,7 +11,7 @@ let lists = []
 let browserWindow = null
 let contextMenu = new Menu()
 
-// TODO 1. Create X button to close window
+// TODO 1. Create X button to close window (DONE)
 //      2. Learn more link to open shelll
 //      3. CSS revamp
 //      4. Create setup

@@ -1,6 +1,7 @@
 const fs = require('fs');
 const { shell, ipcRenderer } = require('electron')
 const { dialog } = require('electron').remote
+const remote = require('electron').remote;
 const settings = require('./settings.js')
 const listFunctions = require('./listFunctions')
 const path = require('path')
@@ -9,6 +10,8 @@ let listsPath = './resources/'
 const EXTENSION = '.txt'
 let modalTargetFile = ''
 
+// window Buttons
+let closeBtn = document.getElementById('closeBtn')
 // SIDEBAR elements
 let addToListBtn = document.getElementById('AddToListBtn')
     listsBtn = document.getElementById('ListsBtn')
@@ -43,6 +46,9 @@ let soundSwitch = document.getElementById("sound-switch");
     folderPath = document.getElementById("folderPath");
     maxSizeInput = document.getElementById("maxSize");
 
+// LEARN MORE elements
+let openGitHubLink = document.getElementById('openGitHubPage')
+
 let btns = document.getElementsByClassName("btn");
     tabs = document.getElementsByClassName("tab");
 
@@ -65,6 +71,14 @@ function openTab(Tab) {
   // Show correct Tab
   document.getElementById(Tab).style.display = "block";
 }
+
+// Window X close btns
+closeBtn.addEventListener('click', e => {
+  let window = remote.getCurrentWindow();
+  // Close animation is ugly, so it first minimizes and then closes the window
+  window.minimize();
+  window.close();
+})
 
 // TAB SideBar listeners for click
 addToListBtn.addEventListener('click', e => {
@@ -199,6 +213,12 @@ folderIcon.addEventListener('click', e => {
 maxSizeInput.addEventListener('change', e => {
   console.log(maxSizeInput.value)
   settings.setAcronymMaxSize(maxSizeInput.value)
+})
+
+//************ LEARN MORE Buttons ***********************************
+
+openGitHubLink.addEventListener('click', e => {
+  shell.openExternal('https://github.com/rFarinha/Acronymu')
 })
 
 

@@ -1,6 +1,5 @@
 const { app, Menu, MenuItem, BrowserWindow, Tray } = require('electron')
 const fs = require('fs'); // access files
-const settings = require('./resources/js/settings')
 const { ipcMain } = require( "electron" );
 
 const isMac = process.platform === 'darwin'
@@ -11,15 +10,14 @@ let lists = []
 let browserWindow = null
 let contextMenu = new Menu()
 
-// TODO 1. Create X button to close window (DONE)
-//      2. Learn more link to open shelll
-//      3. CSS revamp
-//      4. Create setup
+// TODO 1. CSS revamp
+//      2. Create setup
+//      3. Update relative paths so it works with setup
 
 let tray = null
 app.whenReady().then(() => {
   CreateHiddenWindow()
-  tray = new Tray('resources/img/icon.png')
+  tray = new Tray('./resources/img/icon.png')
   contextMenu = Menu.buildFromTemplate(template)
   tray.setToolTip('Find your acronym.')
   tray.setContextMenu(contextMenu)

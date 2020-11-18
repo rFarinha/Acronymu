@@ -1,26 +1,53 @@
 {
   "name": "Acronymu",
-  "version": "1.0.0",
-  "description": "Find the acronym you are looking for",
+  "version": "0.1.0",
+  "description": "A tray desktop app the helps you find the acronym meaning from the clipboard.",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "watch": "nodemon --exec electron .",
-    "reset": "git reset --hard"
+    "reset": "git reset --hard",
+    "build": "electron-builder --help",
   },
   "repository": "https://github.com/rFarinha/Acronymu",
+  "homepage": "https://github.com/rFarinha/Acronymu",
   "keywords": [
     "Electron",
     "Master Electron",
     "demo"
   ],
-  "author": "GitHub, Stackacademytv",
+  "author": "rFarinha, Jrribas",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^10.1.5",
+    "electron-builder": "^22.9.1",
     "nodemon": "^2.0.0"
   },
   "dependencies": {
     "electron-tray-window": "^1.2.5"
+  },
+  "build": {
+    "appId": "com.electron.acronymu",
+    "copyright": "Copyright 2020 rFarinha",
+    "directories":{
+      "buildResources": "resources/img"
+    },
+    "files": [
+      "**/*"
+    ],
+    "extraFiles": [{
+         "from": "resources/img",
+          "to": "resources/img"
+      }],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": "dmg"
+    },
+    "win": {
+      "target": "zip"
+    },
+    "linux": {
+      "category": "Utility"
+    }
   }
 }

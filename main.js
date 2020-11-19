@@ -1,8 +1,13 @@
-const { app, Menu, MenuItem, BrowserWindow, Tray } = require('electron')
+const { app, Menu, MenuItem, BrowserWindow, Tray, nativeImage } = require('electron')
 const fs = require('fs'); // access files
 const { ipcMain } = require( "electron" );
+const path = require('path')
 
 const isMac = process.platform === 'darwin'
+const assetsPath = app.isPackaged ? path.join(process.resourcesPath) : "resources";
+
+const iconPath = path.join(assetsPath, 'img', 'icon.ico')
+const icon = nativeImage.createFromPath(iconPath)
 
 const EXTENSION = '.txt'
 let lists = []
@@ -17,7 +22,7 @@ let contextMenu = new Menu()
 let tray = null
 app.whenReady().then(() => {
   CreateHiddenWindow()
-  tray = new Tray('./resources/img/icon.png')
+  tray = new Tray(icon)
   contextMenu = Menu.buildFromTemplate(template)
   tray.setToolTip('Find your acronym.')
   tray.setContextMenu(contextMenu)
@@ -56,7 +61,7 @@ function CreateWindow(page){
       minimizable: false,
       fullscreenable: false,
       frame: false,
-      icon: './resources/img/icon.png',
+      icon: icon,
       webPreferences: {
         nodeIntegration: true,
         enableRemoteModule: true,

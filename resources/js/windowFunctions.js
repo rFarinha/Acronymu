@@ -32,7 +32,6 @@ let listItems = document.getElementById('list-item')
     closeModal = document.getElementsByClassName("close");
     yesDelete = document.getElementById('yesDelete')
     noDelete = document.getElementById('noDelete')
-    openFileButtons = document.getElementsByClassName('open-file-btn')
     modalCreate = document.getElementById('modalCreate')
     createListBtn = document.getElementById('createList')
     cancelCreateBtn = document.getElementById('cancelCreate')
@@ -226,6 +225,7 @@ openGitHubLink.addEventListener('click', e => {
 //************ UPDATING HTML WHEN CREATING WINDOW *******************
 ipcRenderer.on('StartingWindow', function(event, message) {
       openTab(message);
+      getImageFiles()
       //localStorage.clear()
       // input from settings
       soundSwitch.checked = settings.getSoundState()
@@ -276,11 +276,12 @@ function addItem(item, items){
   let itemNode = document.createElement('div')
   itemNode.setAttribute('class', 'item')
   if(item === activeItem){
-    itemNode.innerHTML = `<button class="list-btn active" id="${item}">${item}</button><input id="${item}" class="open-file-btn icon" type="image" src="./img/file-alt-regular.svg"><button id="${item}" class="delete-btn">X</button>`
+    itemNode.innerHTML = `<button class="list-btn active" id="${item}">${item}</button><input id="${item}" class="open-file-btn icon" type="image"><button id="${item}" class="delete-btn">X</button>`
   }else{
-    itemNode.innerHTML = `<button class="list-btn" id="${item}">${item}</button><input id="${item}" class="open-file-btn icon" type="image" src="./img/file-alt-regular.svg"><button id="${item}" class="delete-btn">X</button>`
+    itemNode.innerHTML = `<button class="list-btn" id="${item}">${item}</button><input id="${item}" class="open-file-btn icon" type="image"><button id="${item}" class="delete-btn">X</button>`
   }
   items.appendChild(itemNode)
+  getImageFiles()
 }
 
 function removeItems(){
@@ -331,4 +332,37 @@ ipcRenderer.on('saveActiveList', function(event, message) {
 
 function ActiveAllLists(){
   settings.setActiveList('AllLists')
+}
+
+// LOAD all images form local files depending if app is in production or dev
+function getImageFiles(){
+    let logo = document.getElementById('logoImg');
+        folderIcon = document.getElementById('folderIcon')
+        addToListIcon = document.getElementById('addToListIcon');
+        listsIcon = document.getElementById('listsIcon');
+        settingsIcon = document.getElementById('settingsIcon');
+        learnMoreIcon = document.getElementById('learnMoreIcon');
+
+    if(require('electron').remote.app.isPackaged){
+      console.log("App is packed")
+      imagesPath = path.join(process.resourcesPath, 'img')
+    }else{
+      console.log("App is not packed")
+      imagesPath = path.join(__dirname,'..','img')
+    }
+
+    logo.src = path.join(imagesPath, 'logo.png')
+    folderIcon.src = path.join(imagesPath, 'folder-open-regular.svg')
+    addToListIcon.src = path.join(imagesPath, 'plus-square-solid.svg')
+    listsIcon.src = path.join(imagesPath, 'list-solid.svg')
+    settingsIcon.src = path.join(imagesPath, 'cog-solid.svg')
+    learnMoreIcon.src = path.join(imagesPath, 'envelope-solid.svg')
+
+    document.getElementById('logo').appendChild(logo);
+
+    // File icon
+    fileButtons = document.getElementsByClassName('open-file-btn')
+    for (let i = 0; i < fileButtons.length; i++) {
+       fileButtons.item(i).src = path.join(imagesPath, 'file-alt-regular.svg');
+    }
 }

@@ -35,16 +35,24 @@
     "files": [
       "**/*"
     ],
-    "extraFiles": [{
-         "from": "resources/img",
-          "to": "resources/img"
+    "extraFiles": [
+      {
+         "from": "resources/examples",
+          "to": "resources/examples"
+      },
+      {
+        "from": "resources/img",
+        "to": "resources/img",
+        "filter": [
+            "**/*"
+        ]
       }],
     "mac": {
       "category": "public.app-category.productivity",
       "target": "dmg"
     },
     "win": {
-      "target": "zip"
+
     },
     "linux": {
       "category": "Utility"

@@ -1,10 +1,10 @@
-//const fs = require('fs');
-//const EXTENSION = '.txt'
+const app = require('electron').remote.app
+const path = require('path')
 
 // DEFAULTS values for first time startup
 let soundState_default = true;
 let clipboardRefreshRate_default = 1000 // seconds
-let listPath_default = 'C:\\Users\\Farinha\\Projects\\Acronymu\\resources'
+let listPath_default = path.join(app.getAppPath(),'resources','examples')
 let acronymMaxSize_default = 10 // seconds
 let activeList_default = 'AllLists'
 

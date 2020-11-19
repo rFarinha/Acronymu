@@ -161,7 +161,6 @@ function UpdateTrayMenu(menu, folderPath, activeList){
 // ChangeActiveList('hello')
 // Handle RADIO tray buttons
 function ChangeActiveList(list){
-  console.log(list)
   optionsWindow.webContents.send('saveActiveList', list)
   if(browserWindow !== null){
       browserWindow.webContents.send('saveActiveList', list)

@@ -1,6 +1,6 @@
 {
   "name": "Acronymu",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A tray desktop app the helps you find the acronym meaning from the clipboard.",
   "main": "main.js",
   "scripts": {
@@ -12,11 +12,11 @@
   "repository": "https://github.com/rFarinha/Acronymu",
   "homepage": "https://github.com/rFarinha/Acronymu",
   "keywords": [
-    "Electron",
-    "Master Electron",
-    "demo"
+    "Tray",
+    "Acronym",
+    "Finder"
   ],
-  "author": "rFarinha, Jrribas",
+  "author": "rFarinha",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^10.1.5",

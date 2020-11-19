@@ -108,7 +108,7 @@ function CreateHiddenWindow(){
 // REFRESH TRAY MENU
 
 ipcMain.on( "folderPath", ( event, pathAndList) => {
-  console.log("Update Tray Menu...")
+  console.log("folderPath: " + pathAndList)
   let [folderPath, activeList] = pathAndList.split(',')
   console.log(folderPath)
   UpdateTrayMenu(contextMenu, folderPath, activeList)

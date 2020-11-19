@@ -4,8 +4,8 @@ const path = require('path')
 // DEFAULTS values for first time startup
 let soundState_default = true;
 let clipboardRefreshRate_default = 1000 // seconds
-let listPath_default = path.join(app.getAppPath(),'resources','examples')
 let acronymMaxSize_default = 10 // seconds
+let listPath_default = ''
 let activeList_default = 'AllLists'
 
 //********** FOLDER PATH ***************
@@ -15,7 +15,12 @@ let saveFolderPath = exports.saveFolderPath = (path) => {
 
 exports.getFolderPath = () => {
   let folderPath = localStorage.getItem('listFolder')
-  if(folderPath === null){
+  if(!folderPath){
+    if(require('electron').remote.app.isPackaged){
+      listPath_default = path.join(process.resourcesPath, 'examples')
+    }else{
+      listPath_default = path.join(app.getAppPath(),'resources','examples')
+    }
     saveFolderPath(listPath_default)
     return listPath_default
   }

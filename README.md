@@ -1,6 +1,10 @@
 # Acronymu
 A tray desktop app the helps you find the acronym meaning from the clipboard.
 
+[Download for Windows][win-download]
+
+[win-download]: https://github.com/rFarinha/Acronymu/releases/download/v0.1.0-alpha/Acronymu.Setup.v0.1.0-alpha.exe
+
 ## How it works
 
 1. Copy an acronym anywhere

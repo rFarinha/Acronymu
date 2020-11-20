@@ -3,7 +3,7 @@ A tray desktop app the helps you find the acronym meaning from the clipboard.
 
 [Download for Windows][win-download]
 
-[win-download]: https://github.com/rFarinha/Acronymu/releases/download/v0.1.0-alpha/Acronymu.Setup.v0.1.0-alpha.exe
+[win-download]: https://github.com/rFarinha/Acronymu/releases/download/v0.1.1-alpha/Acronymu.Setup.0.1.1.exe
 
 ## How it works
 

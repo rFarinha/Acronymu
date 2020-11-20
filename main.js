@@ -136,24 +136,37 @@ function UpdateTrayMenu(menu, folderPath, activeList){
       checked: false,
       click: () => ChangeActiveList('AllLists')}))
   }
+  console.log("READING PATH")
   // Add from folder all lists to Tray Menu
-  fs.readdir(folderPath, (err, files) => {
-    files.forEach(file => {
-      if(file.slice(-4, file.length) === EXTENSION){
-        if(file === activeList){
-          menuList.submenu.append(new MenuItem(
-            {label:file.slice(0,-4),
-              type: 'radio',
-              checked: true,
-              click: () => ChangeActiveList(file)}))
+  fs.access(folderPath, function(err) {
+    if (err && err.code === 'ENOENT') {
+      console.log("path doesnt exist")
+    }else{
+      fs.readdir(folderPath, (err, files) => {
+        console.log(err)
+        if(files.length> 0){
+          files.forEach(file => {
+            if(file.slice(-4, file.length) === EXTENSION){
+              if(file === activeList){
+                menuList.submenu.append(new MenuItem(
+                  {label:file.slice(0,-4),
+                    type: 'radio',
+                    checked: true,
+                    click: () => ChangeActiveList(file)}))
+              }else{
+                menuList.submenu.append(new MenuItem(
+                  {label:file.slice(0,-4),
+                    type: 'radio',
+                    click: () => ChangeActiveList(file)}))
+              }
+            }
+          });
         }else{
-          menuList.submenu.append(new MenuItem(
-            {label:file.slice(0,-4),
-              type: 'radio',
-              click: () => ChangeActiveList(file)}))
+          console.log("Folder with no files")
         }
-      }
-    });
+      });
+    }
+
   });
   tray.setContextMenu(menu)
 }

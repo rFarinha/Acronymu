@@ -144,7 +144,7 @@ function UpdateTrayMenu(menu, folderPath, activeList){
     }else{
       fs.readdir(folderPath, (err, files) => {
         console.log(err)
-        if(files.length> 0){
+        if(files){
           files.forEach(file => {
             if(file.slice(-4, file.length) === EXTENSION){
               if(file === activeList){

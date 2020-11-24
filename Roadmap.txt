@@ -6,6 +6,7 @@ Version 0.1.3
 Version 0.2
 -- Revamp CSS
 -- Create better installation setup
+-- Add Mac and Linux setups
 
 Version 0.3
 -- Select files instead of folder, so user can have multiple files in different folders

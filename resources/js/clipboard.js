@@ -1,8 +1,9 @@
 // Access to clipboard
-const { clipboard } = require('electron')
+const { clipboard} = require('electron')
 // Access to read file
 const fs = require("fs")
 const settings = require("./settings")
+const path = require("path")
 
 // Access to mensages from main.js
 const { ipcRenderer } = require('electron')
@@ -18,6 +19,9 @@ let sigla = ''
 
 let acronymArray = []
 let savedActiveList = ''
+
+const assetsPath = require('electron').remote.app.isPackaged ? path.join(process.resourcesPath, 'img') : path.join(__dirname,'..','img');
+const iconPath = path.join(assetsPath, 'icon.ico')
 
 // Repeat mainLoop function every {intervalToReadCipboard} seconds
 sendInfoToMain()
@@ -65,7 +69,7 @@ function pushNotification (title, text, silence = true){
   const myNotification = new Notification(title, {
     body: text,
     silent: silence,
-    icon: './img/icon.png',
+    icon: iconPath,
     timeoutType: 'default',
   })
 }

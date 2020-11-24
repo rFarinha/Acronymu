@@ -1,13 +1,14 @@
 {
   "name": "Acronymu",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A tray desktop app the helps you find the acronym meaning from the clipboard.",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "watch": "nodemon --exec electron .",
     "reset": "git reset --hard",
-    "build": "electron-builder --help"
+    "build": "electron-builder -w",
+    "win-cert": "electron-builder create-self-signed-cert -p Acronymu"
   },
   "repository": "https://github.com/rFarinha/Acronymu",
   "homepage": "https://github.com/rFarinha/Acronymu",
@@ -52,7 +53,9 @@
       "target": "dmg"
     },
     "win": {
-
+      "certificateFile": "private/Acronymu.pfx",
+      "certificatePassword": "",
+      "publisherName": "Acronymu"
     },
     "linux": {
       "category": "Utility"

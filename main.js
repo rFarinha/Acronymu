@@ -87,7 +87,7 @@ function CreateWindow(page){
   }
 }
 
-// Necessary tp have notifications
+// Necessary to have notifications
 function CreateHiddenWindow(){
   optionsWindow = new BrowserWindow({
     height: 500, width: 500,

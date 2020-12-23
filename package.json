@@ -30,7 +30,7 @@
   "build": {
     "appId": "com.electron.acronymu",
     "copyright": "Copyright 2020 rFarinha",
-    "directories":{
+    "directories": {
       "buildResources": "resources/img"
     },
     "files": [
@@ -38,16 +38,17 @@
     ],
     "extraFiles": [
       {
-         "from": "resources/examples",
-          "to": "resources/examples"
+        "from": "resources/examples",
+        "to": "resources/examples"
       },
       {
         "from": "resources/img",
         "to": "resources/img",
         "filter": [
-            "**/*"
+          "**/*"
         ]
-      }],
+      }
+    ],
     "mac": {
       "category": "public.app-category.productivity",
       "target": "dmg"

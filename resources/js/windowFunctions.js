@@ -6,18 +6,18 @@ const settings = require('./settings.js')
 const listFunctions = require('./listFunctions')
 const path = require('path')
 
-let listsPath = './resources/'
 const EXTENSION = '.txt'
 let modalTargetFile = ''
 
-// window Buttons
+// Window Buttons for All tabs
 let closeBtn = document.getElementById('closeBtn')
 // SIDEBAR elements
 let addToListBtn = document.getElementById('AddToListBtn')
     listsBtn = document.getElementById('ListsBtn')
     settingsBtn = document.getElementById('SettingsBtn')
     learnMoreBtn = document.getElementById('LearnMoreBtn')
-// ADD TO LIST elements
+
+// ADD TO LIST tab elements
 let listTxtsSelect = document.getElementById("listTxtsSelect");
     textAreaToAdd = document.getElementById("text-area-to-add");
     addAcronym = document.getElementById("addAcronym");
@@ -38,23 +38,26 @@ let listItems = document.getElementById('list-item')
     nameNewList = document.getElementById('nameNewList')
     createListConfirmBtn = document.getElementById('createListConfirmBtn')
 
-// SETTINGs elements
+// SETTINGs tab elements
 let soundSwitch = document.getElementById("sound-switch");
     clipboardRefreshRate = document.getElementById("clipboardRefreshRate");
     folderIcon = document.getElementById("folderIcon");
     folderPath = document.getElementById("folderPath");
     maxSizeInput = document.getElementById("maxSize");
 
-// LEARN MORE elements
+// LEARN MORE tab elements
 let openGitHubLink = document.getElementById('openGitHubPage')
 
 let btns = document.getElementsByClassName("btn");
     tabs = document.getElementsByClassName("tab");
 
+//*******************************************
+//****** Window and Sidebar Functions********
+//*******************************************
 
-//************ CHANGE TAB *******************
+// Update UI when changing tab
+// --> Loops all tabs and Hide tab and show selected tab
 function openTab(Tab) {
-
   // Loop through the buttons and add the active class to the current/clicked button
   for (let i = 0; i < btns.length; i++) {
       let current = document.getElementsByClassName("active");
@@ -63,15 +66,14 @@ function openTab(Tab) {
   }
   var i;
   // Hide all tabs
-
   for (i = 0; i < tabs.length; i++) {
     tabs[i].style.display = "none";
   }
-  // Show correct Tab
+  // Show selected Tab
   document.getElementById(Tab).style.display = "block";
 }
 
-// Window X close btns
+// Window X close btn
 closeBtn.addEventListener('click', e => {
   let window = remote.getCurrentWindow();
   // Close animation is ugly, so it first minimizes and then closes the window
@@ -95,7 +97,9 @@ learnMoreBtn.addEventListener('click', e => {
   openTab('LearnMore')
 })
 
-//************ ADD to List Buttons ****************
+//*******************************************
+//**** ADD to List Tab Buttons Functions ****
+//*******************************************
 addAcronym.addEventListener('click', e => {
   listFunctions.addToList(
     settings.getFolderPath() + '\\' + listTxtsSelect.value, // LIST
@@ -110,8 +114,8 @@ removeAcronym.addEventListener('click', e => {
     CleanTextArea()
 })
 
-//*********** CREATE NEW LIST *********************
-
+// Detect in entire window all clicks because buttons are dynamicaly generated
+// if button is: list name, delete button or file button.
 document.addEventListener('click', function(e){
   // Find list buttons to select new active list
   if(e.target.classList.contains('list-btn')){
@@ -133,7 +137,6 @@ document.addEventListener('click', function(e){
 })
 
 // MODAL DELETE content functions
-
 function showModalDeleteList(){
   modalDelete.style.display = "block";
 }
@@ -149,6 +152,7 @@ window.onclick = function(event) {
   }
 }
 
+// Cancel delete
 noDelete.onclick = function(event) {
   modalDelete.style.display = "none";
 }

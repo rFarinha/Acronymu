@@ -8,12 +8,12 @@ exports.addToList = (listPath, text) => {
   let dataString = fs.readFileSync(listPath);
   // String to array
   let dataArray = dataString.toString().split("\n")
-  // Join array with new acronyms from text
+  // Join array with new acronyms from textarea
   let dataJoin = dataArray.concat(text.split("\n"))
-  // Clean Array and sort alphabetical
+  // Clean emptys from Array and sort alphabetical
   let cleanDataArray = dataJoin.filter(isNotEmpty).sort()
 
-  // Write the txt again
+  // Write the txt file again
   fs.writeFile(listPath, cleanDataArray.join("\n"), "utf-8", (error, data) => {
       if (error){
         console.error("error: " + error);
@@ -24,7 +24,7 @@ exports.addToList = (listPath, text) => {
 }
 
 
-// Remove
+// Remove acronym from List
 exports.removeFromList = (listPath, text) =>{
 
   console.log("Remove from List...")
@@ -48,7 +48,7 @@ exports.removeFromList = (listPath, text) =>{
     }
   }
 
-  // Write the txt again
+  // Write the txt file again
   fs.writeFile(listPath, cleanDataArray.join("\n"), "utf-8", (error, data) => {
       if (error){
         console.error("error: " + error);
@@ -59,7 +59,7 @@ exports.removeFromList = (listPath, text) =>{
   // console.log("Final array: " + cleanDataArray)
 }
 
-// Delete selected list file
+// Delete selected list txt file
 exports.deleteListFile = (list) => {
   const path = settings.getFolderPath()
   const filepath = path + '\\' + list
@@ -79,6 +79,7 @@ exports.deleteListFile = (list) => {
   });
 }
 
+// Create a new txt file with name input
 exports.createNewList = (listName) => {
   console.log("Name of list to create: " + listName)
   let pathList = settings.getFolderPath() + '\\' + listName

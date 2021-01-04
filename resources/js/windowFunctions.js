@@ -22,6 +22,7 @@ let listTxtsSelect = document.getElementById("listTxtsSelect");
     textAreaToAdd = document.getElementById("text-area-to-add");
     addAcronym = document.getElementById("addAcronym");
     removeAcronym = document.getElementById("removeAcronym");
+    sortSwitch = document.getElementById("sort-switch");
 
 // LISTs Tab elements
 let listItems = document.getElementById('list-item')
@@ -104,14 +105,14 @@ addAcronym.addEventListener('click', e => {
   listFunctions.addToList(
     settings.getFolderPath() + '\\' + listTxtsSelect.value, // LIST
     textAreaToAdd.value) // TEXT
-    CleanTextArea()
+    CleanTextArea(true) // true = adding
 })
 
 removeAcronym.addEventListener('click', e => {
   listFunctions.removeFromList(
     settings.getFolderPath() + '\\' + listTxtsSelect.value, // LIST
     textAreaToAdd.value) // TEXT
-    CleanTextArea()
+    CleanTextArea(false) // false = removing
 })
 
 // Detect in entire window all clicks because buttons are dynamicaly generated
@@ -187,6 +188,10 @@ createListConfirmBtn.onclick = function(event) {
   modalCreate.style.display = "none";
 }
 
+// Sort Switch functions
+sortSwitch.addEventListener('click', e => {
+  settings.setSortState(sortSwitch.checked)
+})
 
 //************ SETTINGS Buttons *******************
 soundSwitch.addEventListener('click', e => {
@@ -233,6 +238,7 @@ ipcRenderer.on('StartingWindow', function(event, message) {
       //localStorage.clear()
       // input from settings
       soundSwitch.checked = settings.getSoundState()
+      sortSwitch.checked = settings.getSortState()
       clipboardRefreshRate.value = settings.getClipboardRefreshRate()
       folderPath.value = settings.getFolderPath()
       maxSizeInput.value = settings.getAcronymMaxSize()
@@ -322,10 +328,14 @@ const getPathFromUser = () => {
     return pathArray[0]
 }
 
-function CleanTextArea(){
+function CleanTextArea(isAdding){
   // Clean text textArea
   textAreaToAdd.value = ''
-  textAreaToAdd.placeholder = 'Added'
+  if(isAdding){
+    textAreaToAdd.placeholder = 'Added'
+  }else{
+    textAreaToAdd.placeholder = 'Removed'
+  }
   setInterval(function(){textAreaToAdd.placeholder = 'ACRONYM, meaning'},3000);
 }
 

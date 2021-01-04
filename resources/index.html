@@ -33,6 +33,20 @@
       <textarea id="text-area-to-add" placeholder="ACRONYM, meaning" style="-webkit-app-region:no-drag;"></textarea>
       <button class="greenBtn" id="addAcronym" style="-webkit-app-region:no-drag;">Add</button>
       <button class="redBtn" id="removeAcronym" style="-webkit-app-region:no-drag;">Remove</button>
+      <!-- Sort list after adding or removing checkbox -->
+      <div style="width: 100%; display: table;">
+        <div style="display: table-row">
+          <div style="width: 175px; display: table-cell;">
+            <p>Sort List After Adding</p>
+          </div>
+          <div style="display: table-cell;">
+            <label class="switch" style="-webkit-app-region:no-drag;">
+              <input id="sort-switch" type="checkbox">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+      </div>
       <p>To remove acronyms place each acronym in a new line</p>
     </div>
 

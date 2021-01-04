@@ -3,6 +3,7 @@ const path = require('path')
 
 // DEFAULTS values for first time startup
 let soundState_default = true;
+let sortState_default = true;
 let clipboardRefreshRate_default = 1000 // seconds
 let acronymMaxSize_default = 10 // seconds
 let listPath_default = ''
@@ -27,6 +28,22 @@ exports.getFolderPath = () => {
   return folderPath
 }
 
+//********** SORT LIST *****************
+
+exports.setSortState = (state) => {
+  localStorage.setItem('sort', state)
+  console.log('Sort is ' + state)
+}
+
+exports.getSortState = () => {
+  let sortState = localStorage.getItem('sort')
+  if(sortState === null){
+    console.log("default value set for sort state")
+    sortState = sortState_default
+    this.setSortState(sortState)
+  }
+  return sortState.toString() === 'true';
+}
 
 //********** ACTIVE LIST ***************
 let setActiveList = exports.setActiveList = (list) => {

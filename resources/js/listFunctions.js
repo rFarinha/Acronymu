@@ -11,7 +11,11 @@ exports.addToList = (listPath, text) => {
   // Join array with new acronyms from textarea
   let dataJoin = dataArray.concat(text.split("\n"))
   // Clean emptys from Array and sort alphabetical
-  let cleanDataArray = dataJoin.filter(isNotEmpty).sort()
+  let cleanDataArray = dataJoin.filter(isNotEmpty)
+
+  if(settings.getSortState()){
+    cleanDataArray = cleanDataArray.sort()
+  }
 
   // Write the txt file again
   fs.writeFile(listPath, cleanDataArray.join("\n"), "utf-8", (error, data) => {

@@ -10,7 +10,7 @@ let listPath_default = ''
 let activeList_default = 'AllLists'
 
 //********** FOLDER PATH ***************
-let saveFolderPath = exports.saveFolderPath = (path) => {
+exports.saveFolderPath = (path) => {
   localStorage.setItem('listFolder',path)
 }
 
@@ -22,7 +22,7 @@ exports.getFolderPath = () => {
     }else{
       listPath_default = path.join(app.getAppPath(),'resources','examples')
     }
-    saveFolderPath(listPath_default)
+    this.saveFolderPath(listPath_default)
     return listPath_default
   }
   return folderPath
@@ -46,7 +46,7 @@ exports.getSortState = () => {
 }
 
 //********** ACTIVE LIST ***************
-let setActiveList = exports.setActiveList = (list) => {
+exports.setActiveList = (list) => {
   localStorage.setItem('activeList', list)
 }
 
@@ -54,7 +54,7 @@ exports.getActiveList = (list) => {
   let activeList = localStorage.getItem('activeList')
   if(activeList === null){
     activeList = activeList_default
-    localStorage.setItem('activeList', activeList)
+    this.setActiveList(activeList)
   }
   return activeList
 }
@@ -93,7 +93,7 @@ exports.getSoundState = () => {
 }
 
 //********** MAX ACRONYM SIZE ***************
-let setAcronymMaxSize = exports.setAcronymMaxSize = (maxSize) => {
+exports.setAcronymMaxSize = (maxSize) => {
   localStorage.setItem('MaxSize', maxSize)
 }
 
@@ -101,7 +101,7 @@ exports.getAcronymMaxSize = () => {
   let maxSize = localStorage.getItem('MaxSize')
   if(maxSize === null){
     maxSize = acronymMaxSize_default
-    setAcronymMaxSize(maxSize)
+    this.setAcronymMaxSize(maxSize)
   }
   return maxSize
 }
@@ -109,4 +109,19 @@ exports.getAcronymMaxSize = () => {
 //*********** CLEAR SETTINGS ******************
 exports.clearLocalStorage = () => {
   localStorage.clear();
+}
+
+exports.resetSettings = () => {
+  this.setSoundState(soundState_default)
+  this.setSortState(sortState_default)
+  this.setClipboardRefreshRate(clipboardRefreshRate_default)
+  this.setAcronymMaxSize(acronymMaxSize_default)
+  // default folder path changes depending if app is packaged
+  if(require('electron').remote.app.isPackaged){
+    listPath_default = path.join(process.resourcesPath, 'examples')
+  }else{
+    listPath_default = path.join(app.getAppPath(),'resources','examples')
+  }
+  this.saveFolderPath(listPath_default)
+  this.setActiveList('AllLists')
 }

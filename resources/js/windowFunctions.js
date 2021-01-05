@@ -45,6 +45,7 @@ let soundSwitch = document.getElementById("sound-switch");
     folderIcon = document.getElementById("folderIcon");
     folderPath = document.getElementById("folderPath");
     maxSizeInput = document.getElementById("maxSize");
+    resetSettings  =document.getElementById("resetSettings")
 
 // LEARN MORE tab elements
 let openGitHubLink = document.getElementById('openGitHubPage')
@@ -223,6 +224,19 @@ maxSizeInput.addEventListener('change', e => {
   settings.setAcronymMaxSize(maxSizeInput.value)
 })
 
+resetSettings.onclick = function(event){
+  settings.resetSettings()
+  updateSettings()
+}
+
+function updateSettings(){
+  soundSwitch.checked = settings.getSoundState()
+  sortSwitch.checked = settings.getSortState()
+  clipboardRefreshRate.value = settings.getClipboardRefreshRate()
+  folderPath.value = settings.getFolderPath()
+  maxSizeInput.value = settings.getAcronymMaxSize()
+}
+
 //************ LEARN MORE Buttons ***********************************
 
 openGitHubLink.addEventListener('click', e => {
@@ -237,11 +251,7 @@ ipcRenderer.on('StartingWindow', function(event, message) {
       getImageFiles()
       //localStorage.clear()
       // input from settings
-      soundSwitch.checked = settings.getSoundState()
-      sortSwitch.checked = settings.getSortState()
-      clipboardRefreshRate.value = settings.getClipboardRefreshRate()
-      folderPath.value = settings.getFolderPath()
-      maxSizeInput.value = settings.getAcronymMaxSize()
+      updateSettings()
       UpdateListOfListsHtml()
 });
 

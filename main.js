@@ -15,10 +15,10 @@ let lists = []
 let browserWindow = null
 let contextMenu = new Menu()
 
-// TODO 1. CSS revamp
-//      2. Create setup
-//      3. Update relative paths so it works with setup
 
+// *********************************************
+// ************ CREATE TRAY ********************
+// *********************************************
 let tray = null
 app.whenReady().then(() => {
   CreateHiddenWindow()
@@ -26,33 +26,97 @@ app.whenReady().then(() => {
   contextMenu = Menu.buildFromTemplate(template)
   tray.setToolTip('Find your acronym.')
   tray.setContextMenu(contextMenu)
-  console.log('Tray created...')
-  //readListFolder(contextMenu)
 })
 
+// Tray template
 let template = [
   { label: app.name, enabled: false },
   { type: 'separator' },
   { label: 'Add to List',
-  click() { CreateWindow('AddToList') }},
+  click() { CreateWindow('AddToList') }}, // This will open window with Add To List Tab open
   {
     label: 'Lists', id: 'menu',
+    // This submenu is dynamic and updated with UpdateTrayMenu() function
     submenu: [
       { label: 'Create new List',
-      click() { CreateWindow('Lists') }},
+      click() { CreateWindow('Lists') }}, // This will open window with Lists Tab open
       { type: 'separator' },
     ]
   },
   { type: 'separator' },
   { label: 'Settings',
-  click() { CreateWindow('Settings') }},
+  click() { CreateWindow('Settings') }}, // This will open window with Settings Tab open
   {label: 'Learn More',
-  click() { CreateWindow('LearnMore') }},
+  click() { CreateWindow('LearnMore') }}, // This will open window with learnMore Tab open
   { type: 'separator' },
   isMac ? { role: 'close' } : { role: 'quit' }
 ]
 
+// Read folder and adds to Tray all the lists found
+function UpdateTrayMenu(menu, folderPath, activeList){
+  // Clean Tray Menu
+  menu =  Menu.buildFromTemplate(template)
+  let menuList = menu.getMenuItemById('menu')
+
+  // Create tray button to select all lists
+  menuList.submenu.append(new MenuItem(
+    {label:'All Lists',
+      type: 'radio',
+      checked: 'AllLists' === activeList, // True if alllists is active
+      click: () => ChangeActiveList('AllLists')})) // ChangeActiveLists will send new active list to main window and save it in settings
+
+  // Read folder and add tray button for every txt in folder
+  fs.access(folderPath, function(err) {
+    if (err && err.code === 'ENOENT') {
+      console.log("path doesnt exist")
+    }else{
+      fs.readdir(folderPath, (err, files) => {
+        // console.log(err)
+        if(files){ // checks if there is any file in folder
+          files.forEach(file => {
+            if(file.slice(-4, file.length) === EXTENSION){
+              menuList.submenu.append(new MenuItem(
+                {label:file.slice(0,-4),
+                  type: 'radio',
+                  checked: file === activeList,
+                  click: () => ChangeActiveList(file)})) // ChangeActiveLists will send new active list to main window and save it in settings
+            }
+          });
+        }else{
+          console.log("Folder with no files")
+        }
+      });
+    }
+  });
+  tray.setContextMenu(menu)
+}
+
+
+// REFRESH TRAY MENU
+// If folder or active list is changed in main window
+// the message "folderPath" is sent with the path to folder and current active list
+ipcMain.on( "folderPath", ( event, pathAndList) => {
+  let [folderPath, activeList] = pathAndList.split(',')
+  UpdateTrayMenu(contextMenu, folderPath, activeList)
+})
+
+
+// Handle RADIO tray buttons
+// Send new active list to main window and save it to settings
+function ChangeActiveList(list){
+  optionsWindow.webContents.send('saveActiveList', list)
+  if(browserWindow !== null){
+      browserWindow.webContents.send('saveActiveList', list)
+  }
+}
+
+// *********************************************
+// ************ CREATE MAIN WINDOW *************
+// *********************************************
 function CreateWindow(page){
+  // Check if window already created
+  // page is the window tab to open
+  // When Tray button is pressed, it will call CreateWindow function with corresponding button Tab
   if(!browserWindow){
       browserWindow = new BrowserWindow({
       height: 600, width: 500,
@@ -79,6 +143,7 @@ function CreateWindow(page){
       browserWindow = null
     })
     browserWindow.webContents.on('did-finish-load', function() {
+      // send message to windowFunctions.js to only show the correct page (Tab) and update html
       browserWindow.webContents.send('StartingWindow', page)
     });
   }else{
@@ -87,7 +152,11 @@ function CreateWindow(page){
   }
 }
 
-// Necessary to have notifications
+// *********************************************
+// ************ CREATE HIDDEN WINDOW ***********
+// *********************************************
+// Window that will read clipboard every X ms
+// is associated with clipboard.js
 function CreateHiddenWindow(){
   optionsWindow = new BrowserWindow({
     height: 500, width: 500,
@@ -98,84 +167,8 @@ function CreateHiddenWindow(){
      }
   })
   optionsWindow.loadFile('./resources/hidden.html')
-  console.log('Hidden window created...')
+  // console.log('Hidden window created...')
 
   // Open DevTools - Remove for PRODUCTION!
   //optionsWindow.webContents.openDevTools();
-}
-
-
-// REFRESH TRAY MENU
-
-ipcMain.on( "folderPath", ( event, pathAndList) => {
-  console.log("folderPath: " + pathAndList)
-  let [folderPath, activeList] = pathAndList.split(',')
-  console.log(folderPath)
-  UpdateTrayMenu(contextMenu, folderPath, activeList)
-  console.log("Tray Menu updated")
-})
-
-// Read folder and adds to Tray all the lists found
-function UpdateTrayMenu(menu, folderPath, activeList){
-  // Clean Tray Menu
-  menu =  Menu.buildFromTemplate(template)
-  let menuList = menu.getMenuItemById('menu')
-  // Create All List tray button
-  if('AllLists' === activeList){
-    console.log('hello1')
-    menuList.submenu.append(new MenuItem(
-      {label:'All Lists',
-        type: 'radio',
-        checked: true,
-        click: () => ChangeActiveList('AllLists')}))
-  }else{
-    console.log('hello2')
-    menuList.submenu.append(new MenuItem(
-      {label:'All Lists',
-      type: 'radio',
-      checked: false,
-      click: () => ChangeActiveList('AllLists')}))
-  }
-  console.log("READING PATH")
-  // Add from folder all lists to Tray Menu
-  fs.access(folderPath, function(err) {
-    if (err && err.code === 'ENOENT') {
-      console.log("path doesnt exist")
-    }else{
-      fs.readdir(folderPath, (err, files) => {
-        console.log(err)
-        if(files){
-          files.forEach(file => {
-            if(file.slice(-4, file.length) === EXTENSION){
-              if(file === activeList){
-                menuList.submenu.append(new MenuItem(
-                  {label:file.slice(0,-4),
-                    type: 'radio',
-                    checked: true,
-                    click: () => ChangeActiveList(file)}))
-              }else{
-                menuList.submenu.append(new MenuItem(
-                  {label:file.slice(0,-4),
-                    type: 'radio',
-                    click: () => ChangeActiveList(file)}))
-              }
-            }
-          });
-        }else{
-          console.log("Folder with no files")
-        }
-      });
-    }
-
-  });
-  tray.setContextMenu(menu)
-}
-
-// ChangeActiveList('hello')
-// Handle RADIO tray buttons
-function ChangeActiveList(list){
-  optionsWindow.webContents.send('saveActiveList', list)
-  if(browserWindow !== null){
-      browserWindow.webContents.send('saveActiveList', list)
-  }
 }

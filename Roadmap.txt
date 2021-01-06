@@ -1,6 +1,6 @@
 Version 0.1.3
 -- Clean comments
--- Add Reset settings button
+-- Add Reset settings button DONE
 -- Add check if user wants to sort list or add to bottom DONE
 
 Version 0.2

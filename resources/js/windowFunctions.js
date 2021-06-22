@@ -259,18 +259,22 @@ ipcRenderer.on('StartingWindow', function(event, message) {
 //************ FUNCTIONS BEING USED *******************
 function UpdateListOfListsHtml(){
   //settings.clearLocalStorage()
+  noItemP.style.display = "block";
   console.log('Update List of Lists')
   fs.readdir(settings.getFolderPath(), (err, files) => {
     removeItems()
     addAllBtn(listItems)
     files.forEach(file => {
       if(file.slice(-4, file.length) === EXTENSION){
+        noItemP.style.display = "none"; // Hide "No Lists" text
         let option = document.createElement("option");
         option.text = file;
         listTxtsSelect.add(option)
-        noItemP.style.display = "none";
+        //noItemP.style.display = "none";
         addItem(file, listItems)
-      }
+    }//else{
+        //noItemP.style.display = "block";
+    //}
     });
   });
   pathToLists = settings.getFolderPath()

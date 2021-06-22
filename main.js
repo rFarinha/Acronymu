@@ -34,11 +34,14 @@ let template = [
   { type: 'separator' },
   { label: 'Add to List',
   click() { CreateWindow('AddToList') }}, // This will open window with Add To List Tab open
+  { label: 'Create new List',
+  click() { CreateWindow('Lists') }}, // This will open window with Lists Tab open
+  { type: 'separator' },
   {
     label: 'Lists', id: 'menu',
     // This submenu is dynamic and updated with UpdateTrayMenu() function
     submenu: [
-      { label: 'Create new List',
+      { label: 'Select a list',
       click() { CreateWindow('Lists') }}, // This will open window with Lists Tab open
       { type: 'separator' },
     ]
@@ -46,8 +49,8 @@ let template = [
   { type: 'separator' },
   { label: 'Settings',
   click() { CreateWindow('Settings') }}, // This will open window with Settings Tab open
-  {label: 'Learn More',
-  click() { CreateWindow('LearnMore') }}, // This will open window with learnMore Tab open
+  //{label: 'Learn More',
+  //click() { CreateWindow('LearnMore') }}, // This will open window with learnMore Tab open
   { type: 'separator' },
   isMac ? { role: 'close' } : { role: 'quit' }
 ]
@@ -136,7 +139,7 @@ function CreateWindow(page){
     browserWindow.loadFile('./resources/index.html')
 
     // Open DevTools - Remove for PRODUCTION!
-    // browserWindow.webContents.openDevTools();
+    //browserWindow.webContents.openDevTools();
 
     // Listen for window being closed
     browserWindow.on('closed',  () => {

@@ -11,14 +11,14 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- The sidebar -->
-  <div class="sidebar" style="-webkit-app-region:no-drag;">
+  <div class="sidebar">
     <div id="logo">
       <img id="logoImg">
     </div>
-    <a class="btn active" id="AddToListBtn"><img id="addToListIcon" class="sidebarIcon">Add to List</a>
-    <a class="btn" id="ListsBtn"><img id="listsIcon" class="sidebarIcon">Lists</a>
-    <a class="btn" id="SettingsBtn"><img id="settingsIcon" class="sidebarIcon">Settings</a>
-    <a class="btn" id="LearnMoreBtn"><img id="learnMoreIcon" class="sidebarIcon">Learn More</a>
+    <a class="btn active" id="AddToListBtn" style="-webkit-app-region:no-drag;"><img id="addToListIcon" class="sidebarIcon">Add to List</a>
+    <a class="btn" id="ListsBtn" style="-webkit-app-region:no-drag;"><img id="listsIcon" class="sidebarIcon">Lists</a>
+    <a class="btn" id="SettingsBtn" style="-webkit-app-region:no-drag;"><img id="settingsIcon" class="sidebarIcon">Settings</a>
+    <a class="btn" id="LearnMoreBtn" style="-webkit-app-region:no-drag;"><img id="learnMoreIcon" class="sidebarIcon">Learn More</a>
   </div>
 
   <main>
@@ -54,7 +54,6 @@
     <div class="tab" id="Lists">
       <h2>Lists</h2>
       <button class="greenBtn" id="createList" style="-webkit-app-region:no-drag;">Create new List</button>
-      <p id="no-lists">No Lists</p>
       <div id="list-item" style="-webkit-app-region:no-drag;">
         <button class="list-btn active" id="all">All Lists</button>
       </div>
@@ -75,6 +74,7 @@
           <button class="greenBtn" id="createListConfirmBtn">Create</button><button class="redBtn" id="cancelCreate">Cancel</button>
         </div>
       </div>
+      <p id="no-lists">No Lists Found</p>
     </div>
 
     <!-- TAB 3 SETTINGS -->
@@ -120,7 +120,7 @@
     <div class="tab" id="LearnMore">
       <div class="centerText">
         <h2>Learn More</h2>
-        <p>Version 0.1.2 -alpha<p>
+        <p>Version 0.1.3 -alpha<p>
         <br>
         <p>Created by:</p>
         <p> Ricardo Farinha</p>

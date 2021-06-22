@@ -362,6 +362,7 @@ button.list-btn:hover{
 }
 
 .sidebarIcon{
+  padding-right: 10px;
   width: 15px;
   height: auto;
   vertical-align:middle;

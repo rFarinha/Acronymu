@@ -20,12 +20,11 @@
   "author": "rFarinha",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^10.1.5",
-    "electron-builder": "^22.9.1",
-    "nodemon": "^2.0.0"
+    "electron": "^10.4.7",
+    "electron-builder": "^22.11.7",
+    "nodemon": "^2.0.7"
   },
   "dependencies": {
-    "electron-tray-window": "^1.2.5"
   },
   "build": {
     "appId": "com.electron.acronymu",

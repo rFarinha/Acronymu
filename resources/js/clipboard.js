@@ -19,6 +19,7 @@ let sigla = ''
 
 let acronymArray = []
 let savedActiveList = ''
+let savedPath = ''
 
 const assetsPath = require('electron').remote.app.isPackaged ? path.join(process.resourcesPath, 'img') : path.join(__dirname,'..','img');
 const iconPath = path.join(assetsPath, 'icon.ico')
@@ -31,6 +32,18 @@ function mainLoop(){
   acronymToSearch = readClipBoard()
   //acronymArray = newListIsSelected()
   console.log('Acronym to search: ' + acronymToSearch)
+
+  // Check if path changed
+  let currentPath = settings.getFolderPath()
+  if(currentPath !== savedPath){
+      savedPath = currentPath
+      let currentActiveList = settings.getActiveList()
+      if(currentActiveList === 'AllLists'){
+        AllListsToArray()
+      }else{
+        newListIsSelected()
+      }
+  }
   // Get active list, if AllList selected, transform all lists into a single array
   let currentActiveList = settings.getActiveList()
   if(currentActiveList !== savedActiveList){
@@ -95,10 +108,10 @@ function searchList(acronymToSearch, array){
 
 function newListIsSelected(){
   console.log('new list...')
-  path = settings.getFolderPath()
+  text_path = settings.getFolderPath()
   file = settings.getActiveList()
-  console.log('path + file: ' + path + '\\' + file)
-  acronymArray =  transformTxtToArray(path, file)
+  console.log('path + file: ' + text_path + '\\' + file)
+  acronymArray =  transformTxtToArray(text_path, file)
 }
 
 module.exports = { newListIsSelected };
@@ -109,6 +122,7 @@ function AllListsToArray(){
   fs.readdir(settings.getFolderPath(), (err, files) => {
     files.forEach(file => {
       if(file.slice(-4, file.length) === EXTENSION){
+        console.log("file: " + file)
         arrayTemp = transformTxtToArray(settings.getFolderPath(), file)
         acronymArray = acronymArray.concat(arrayTemp)
       }

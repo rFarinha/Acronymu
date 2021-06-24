@@ -25,6 +25,9 @@ exports.addToList = (listPath, text) => {
         console.log("Adding to List success")
       }
   });
+
+  // Reset List Array with the acronyms
+  settings.setResetArray(true)
 }
 
 
@@ -60,7 +63,9 @@ exports.removeFromList = (listPath, text) =>{
         console.log("Remove from List success")
       }
   });
-  // console.log("Final array: " + cleanDataArray)
+
+  // Reset List Array with the acronyms
+  settings.setResetArray(true)
 }
 
 // Delete selected list txt file

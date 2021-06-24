@@ -123,6 +123,10 @@ document.addEventListener('click', function(e){
   if(e.target.classList.contains('list-btn')){
     console.log('SAVING NEW active list')
     settings.setActiveList(e.target.id)
+
+    // Reset List Array with the acronyms
+    settings.setResetArray(true)
+
     UpdateListOfListsHtml()
     ipcRenderer.send('folderPath', settings.getFolderPath() + ',' + settings.getActiveList())
   }
@@ -211,6 +215,8 @@ folderIcon.addEventListener('click', e => {
   if(typeof pathToLists !== 'undefined'){
     // Save the PATH and HTML
     settings.saveFolderPath(pathToLists)
+    // Reset List Array with the acronyms
+    settings.setResetArray(true)
 
     ActiveAllLists()
 
@@ -360,6 +366,9 @@ ipcRenderer.on('saveActiveList', function(event, message) {
 
 function ActiveAllLists(){
   settings.setActiveList('AllLists')
+
+  // Reset List Array with the acronyms
+  settings.setResetArray(true)
 }
 
 // LOAD all images form local files depending if app is in production or dev

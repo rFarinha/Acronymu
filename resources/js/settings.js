@@ -125,3 +125,17 @@ exports.resetSettings = () => {
   this.saveFolderPath(listPath_default)
   this.setActiveList('AllLists')
 }
+
+//************ ACRONYM ADDED ***************
+exports.setResetArray = (reset) => {
+  localStorage.setItem('ResetArray', reset)
+}
+
+exports.getResetArray = () => {
+  let resetArray = localStorage.getItem('ResetArray')
+  if(resetArray === null){
+    resetArray = false
+    this.setResetArray(resetArray)
+  }
+  return resetArray
+}

@@ -139,7 +139,7 @@ function CreateWindow(page){
     browserWindow.loadFile('./resources/index.html')
 
     // Open DevTools - Remove for PRODUCTION!
-    //browserWindow.webContents.openDevTools();
+    browserWindow.webContents.openDevTools();
 
     // Listen for window being closed
     browserWindow.on('closed',  () => {
@@ -173,5 +173,5 @@ function CreateHiddenWindow(){
   // console.log('Hidden window created...')
 
   // Open DevTools - Remove for PRODUCTION!
-  //optionsWindow.webContents.openDevTools();
+  optionsWindow.webContents.openDevTools();
 }

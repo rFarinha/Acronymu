@@ -28,32 +28,23 @@ const iconPath = path.join(assetsPath, 'icon.ico')
 sendInfoToMain()
 setInterval(mainLoop, intervalToReadCipboard)
 
+// Reset array on startup
+settings.setResetArray(true)
+
 function mainLoop(){
   acronymToSearch = readClipBoard()
-  //acronymArray = newListIsSelected()
-  console.log('Acronym to search: ' + acronymToSearch)
 
-  // Check if path changed
-  let currentPath = settings.getFolderPath()
-  if(currentPath !== savedPath){
-      savedPath = currentPath
-      let currentActiveList = settings.getActiveList()
-      if(currentActiveList === 'AllLists'){
+  // check if array needs reset
+  let reset = settings.getResetArray()
+  if(reset === 'true'){
+      settings.setResetArray(false)
+      if(settings.getActiveList() === 'AllLists'){
         AllListsToArray()
       }else{
         newListIsSelected()
       }
   }
-  // Get active list, if AllList selected, transform all lists into a single array
-  let currentActiveList = settings.getActiveList()
-  if(currentActiveList !== savedActiveList){
-    savedActiveList = currentActiveList
-    if(currentActiveList === 'AllLists'){
-      AllListsToArray()
-    }else{
-      newListIsSelected()
-    }
-  }
+
   if(acronymToSearch){
     let [title, body] = searchList(acronymToSearch, acronymArray);
     // push notification
@@ -147,6 +138,9 @@ function sendInfoToMain(){
 ipcRenderer.on('saveActiveList', function(event, message) {
   console.log(message)
   settings.setActiveList(message)
-  newListIsSelected()
+
+  // Reset List Array with the acronyms
+  settings.setResetArray(true)
+
   sendInfoToMain()
 })

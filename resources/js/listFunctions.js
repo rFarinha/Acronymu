@@ -46,26 +46,32 @@ exports.removeFromList = (listPath, text) =>{
 
   // Loop each line and check if acronym in removeArray, if yes it removes from cleanDataArray
   let i = 0
+  let foundArray = false
   while(i<cleanDataArray.length){
     let [acronymInList, meaning] = cleanDataArray[i].split(',');
     if(removeArray.includes(acronymInList)){
       cleanDataArray.splice(i, 1)
+      foundArray = true
     }else{
       i++
     }
   }
 
   // Write the txt file again
-  fs.writeFile(listPath, cleanDataArray.join("\n"), "utf-8", (error, data) => {
+  if(foundArray){
+    fs.writeFile(listPath, cleanDataArray.join("\n"), "utf-8", (error, data) => {
       if (error){
         console.error("error: " + error);
       }else{
         console.log("Remove from List success")
       }
-  });
+    });
+  }
 
   // Reset List Array with the acronyms
   settings.setResetArray(true)
+  // return success
+  return foundArray
 }
 
 // Delete selected list txt file

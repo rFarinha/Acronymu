@@ -131,10 +131,14 @@ addAcronym.addEventListener('click', e => {
 })
 
 removeAcronym.addEventListener('click', e => {
-  listFunctions.removeFromList(
-    settings.getFolderPath() + '\\' + listTxtsSelect.value, // LIST
-    textAreaToAdd.value) // TEXT
-    CleanTextArea(false) // false = removing
+  if(listTxtsSelect.value !== ''){
+    let success = listFunctions.removeFromList(
+      settings.getFolderPath() + '\\' + listTxtsSelect.value, // LIST
+      textAreaToAdd.value) // TEXT
+    if(success){
+      CleanTextArea(false) // false = removing
+    }
+  }
 })
 
 // Detect in entire window all clicks because buttons are dynamicaly generated

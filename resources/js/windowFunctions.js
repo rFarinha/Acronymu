@@ -86,7 +86,26 @@ closeBtn.addEventListener('click', e => {
 // TAB SideBar listeners for click
 addToListBtn.addEventListener('click', e => {
   openTab('AddToList')
-  listTxtsSelect.value = settings.getActiveList()
+  let activatedList = settings.getActiveList()
+  if(activatedList === 'AllLists'){
+    // find a txt in the folder and select
+    fs.readdir(settings.getFolderPath(), (err, files) => {
+      // there is no break in for each so a try catch is used
+      var BreakException = {};
+      try {
+        files.forEach(file => {
+          if(file.slice(-4, file.length) === EXTENSION){
+            listTxtsSelect.value = file
+            throw BreakException;
+          }
+        });
+      }catch (e) {
+        if (e !== BreakException) throw e;
+      }
+    });
+  }else{
+    listTxtsSelect.value = settings.getActiveList()
+  }
 })
 listsBtn.addEventListener('click', e => {
   openTab('Lists')
@@ -103,10 +122,12 @@ learnMoreBtn.addEventListener('click', e => {
 //**** ADD to List Tab Buttons Functions ****
 //*******************************************
 addAcronym.addEventListener('click', e => {
-  listFunctions.addToList(
-    settings.getFolderPath() + '\\' + listTxtsSelect.value, // LIST
-    textAreaToAdd.value) // TEXT
-    CleanTextArea(true) // true = adding
+  if(listTxtsSelect.value !== ''){
+      listFunctions.addToList(
+        settings.getFolderPath() + '\\' + listTxtsSelect.value, // LIST
+        textAreaToAdd.value) // TEXT
+        CleanTextArea(true) // true = adding
+  }
 })
 
 removeAcronym.addEventListener('click', e => {

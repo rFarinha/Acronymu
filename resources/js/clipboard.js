@@ -86,7 +86,8 @@ function searchList(acronymToSearch, array){
 
   let i = 1 // each meaning found
   array.forEach(line  => {
-    let [acronymInList, meaning] = line.split(',');
+    let [acronymInList, meaning] = line.split(/,(.+)/);
+
     if(acronymInList === acronymToSearch){
       title = acronymInList;
       body = body + i + '. ' + meaning + '\n';

@@ -153,7 +153,8 @@ document.addEventListener('click', function(e){
     settings.setResetArray(true)
 
     UpdateListOfListsHtml()
-    ipcRenderer.send('folderPath', settings.getFolderPath() + ',' + settings.getActiveList())
+    let pathAndActive  = settings.getFolderPath() + ';' + settings.getActiveList()
+    ipcRenderer.send('folderPath', `${pathAndActive}`)
   }
   // If delete list button pressed, read ID to select right list and open delete modal
   if(e.target.classList.contains('delete-btn')){
@@ -354,8 +355,9 @@ function removeItems(){
 
 
 function openFile(fileName){
-  console.log('open file')
-  shell.openExternal(settings.getFolderPath() + '\\' + fileName);
+  let filepath = settings.getFolderPath() + '\\' + fileName
+  //console.log('open file: ' + `"${filepath}"`)
+  shell.openPath(`"${filepath}"`);
 }
 
 const getPathFromUser = () => {

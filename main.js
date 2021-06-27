@@ -15,7 +15,6 @@ let lists = []
 let browserWindow = null
 let contextMenu = new Menu()
 
-
 // *********************************************
 // ************ CREATE TRAY ********************
 // *********************************************
@@ -58,6 +57,7 @@ let template = [
 // Read folder and adds to Tray all the lists found
 function UpdateTrayMenu(menu, folderPath, activeList){
   // Clean Tray Menu
+  console.log("path: " + folderPath)
   menu =  Menu.buildFromTemplate(template)
   let menuList = menu.getMenuItemById('menu')
 
@@ -99,7 +99,7 @@ function UpdateTrayMenu(menu, folderPath, activeList){
 // If folder or active list is changed in main window
 // the message "folderPath" is sent with the path to folder and current active list
 ipcMain.on( "folderPath", ( event, pathAndList) => {
-  let [folderPath, activeList] = pathAndList.split(',')
+  let [folderPath, activeList] = pathAndList.split(';')
   UpdateTrayMenu(contextMenu, folderPath, activeList)
 })
 
